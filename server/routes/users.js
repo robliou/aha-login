@@ -7,11 +7,21 @@ const pool = new Pool({
   host: "john.db.elephantsql.com",
   database: "mcdyzqzn",
   password: "tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js",
+  //Above needs to get hidden on production!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   port: 5432,
 });
 
 usersRouter.getUsers = (request, response) => {
-  pool.query("SELECT * FROM users ORDER BY user_id ASC", (error, results) => {
+  pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+
+const getUsers = (request, response) => {
+  pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
     if (error) {
       throw error;
     }
@@ -21,4 +31,5 @@ usersRouter.getUsers = (request, response) => {
 
 module.exports = {
   usersRouter,
+  getUsers,
 };

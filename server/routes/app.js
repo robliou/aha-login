@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/users", usersRouter);
+app.get("/users", db.getUsers);
 
 /* app.listen(port, () => {
   console.log(`App running on port ${port}`);
