@@ -10,9 +10,10 @@ root.render(
   <Auth0Provider
     domain="dev-7-8i89hb.us.auth0.com"
     clientId="IfWNFQUg2KxdrvalNnm3Y7pXHHiHMw8e"
-    /*  redirectUri="https://rct-login.herokuapp.com/home" */
+    redirectUri="https://aha-login.herokuapp.com"
     //Note- unfreeze above and freeze below when going from production to local testing!
-    redirectUri="http://localhost:3000/home"
+    /*     redirectUri="http://localhost:3000/home"
+     */
   >
     <React.StrictMode>
       <App />

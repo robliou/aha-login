@@ -6,8 +6,8 @@ const app = express();
 const db = require("./users");
 const cors = require("cors");
 
-const port = 3000;
-
+/* const port = 3000;
+ */
 app.options(
   "postgres://mcdyzqzn:tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js@john.db.elephantsql.com/mcdyzqzn",
   cors()
@@ -48,8 +48,8 @@ app.get("/", (req, res) => {
 
 app.get("/users", usersRouter);
 
-app.listen(port, () => {
+/* app.listen(port, () => {
   console.log(`App running on port ${port}`);
-});
+}); */
 
 module.exports = app;
