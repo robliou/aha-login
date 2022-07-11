@@ -6,7 +6,7 @@ import { Table } from "react-bootstrap";
 import API from "./API";
 
 const Profile = () => {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
 
   const [visible, setVisible] = useState("false");
@@ -41,30 +41,36 @@ if(error) return `Error! ${error.message}`;
 if(user_loading) return 'Loading...';
 if(user_error) return `Error! ${user_error.message}`;   */
 
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
   return (
-    <div id="profileContainer">
-      <div>
-        <div id="userInfo">
+    isAuthenticated && (
+      <div id="profileContainer">
+        <div>
+          <div id="userInfo">
+            <br></br>
+            <Table striped bordered hover responsive>
+              <thead>
+                <tr>
+                  <th> {user.email}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr></tr>
+              </tbody>
+            </Table>
+          </div>
+
           <br></br>
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr></tr>
-            </tbody>
-          </Table>
+
+          <button class="buttonProfile" onClick={() => fetchUser()}>
+            Fetch User
+          </button>
         </div>
-
-        <br></br>
-
-        <button class="buttonProfile" onClick={() => fetchUser()}>
-          Fetch User
-        </button>
       </div>
-    </div>
+    )
   );
 };
 
