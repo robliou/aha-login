@@ -23,13 +23,13 @@ const Profile = () => {
    */
   const fetchUser = async () => {
     const response = await axios
-      .get(API + "/users")
+      .get(API + "/usersz2")
       .catch((err) => console.log(err));
 
     if (response) {
-      const users = response.data;
+      const usersz = response.data;
 
-      console.log("Users:", users);
+      console.log("Users:", usersz);
     }
   };
 
