@@ -1,7 +1,7 @@
-const express = require("express");
+/* const express = require("express");
 const usersRouter = express.Router();
 
-var pg = require("pg");
+var pg = require("pg"); */
 
 const Pool = require("pg").Pool;
 const pool = new Pool({
@@ -13,28 +13,19 @@ const pool = new Pool({
   port: 5432,
 });
 
-const connectionString = process.env.PSQL_CONNECTION;
+/* const connectionString = process.env.PSQL_CONNECTION; */
 
-var client = new pg.Client(connectionString);
+/* var client = new pg.Client(connectionString); */
 
-client.connect(function (err) {
+/* client.connect(function (err) {
   if (err) {
     return console.error("cound not connect to postgres", err);
   }
 });
-
+ */
 /*  const pool = new Pool({
   connectionString,
 });  */
-
-usersRouter.getUsers = (request, response) => {
-  pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
-    if (error) {
-      throw error;
-    }
-    response.status(200).json(results.rows);
-  });
-};
 
 const getUsers = (request, response) => {
   pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
@@ -45,7 +36,16 @@ const getUsers = (request, response) => {
   });
 };
 
+/* const getUsers = (request, response) => {
+  pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+ */
 module.exports = {
-  usersRouter,
-  getUsers,
+  /*   usersRouter,
+   */ getUsers,
 };
