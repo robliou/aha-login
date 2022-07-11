@@ -30,7 +30,9 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-table": "^7.8.0",
     "serve": "^13.0.4",
+    "twin.macro": "^2.8.2",
     "web-vitals": "^2.1.4"
   },
   "scripts2": {

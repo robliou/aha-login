@@ -67,7 +67,7 @@ const Profile = () => {
 
   const [visible, setVisible] = useState("false");
 
-  const offersData = useMemo(() => [...offers], [offers]);
+  const offersData = useMemo(() => [...users], [users]);
 
   const offersColumns = useMemo(
     () =>
