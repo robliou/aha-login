@@ -21,10 +21,25 @@ const Profile = () => {
 
   /*   const client = getUsers();
    */
-  const fetchUser = async () => {
+  /*  const fetchUser = async () => {
     const response = await axios
       .get(`${API}users`)
       .catch((err) => console.log(err));
+
+    if (response) {
+      const users2 = response.data;
+
+      console.log("Users:", users2);
+    }
+  }; */
+
+  const fetchUser = async () => {
+    const response = await fetch("API/users")
+      .then((response) => response.json()) // one extra step
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.error(error));
 
     if (response) {
       const users2 = response.data;
