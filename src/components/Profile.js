@@ -22,7 +22,9 @@ const Profile = () => {
   /*   const client = getUsers();
    */
   const fetchUser = async () => {
-    const response = await axios.get("/users").catch((err) => console.log(err));
+    const response = await axios
+      .get(API + "/usersz2")
+      .catch((err) => console.log(err));
 
     if (response) {
       const usersz = response.data;
