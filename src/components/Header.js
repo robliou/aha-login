@@ -1,7 +1,7 @@
 import "./../styles/header.css";
 import AuthNav from "./auth-nav";
 import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "./Profile";
+import ProfileButton from "./ProfileButton";
 
 import React, { useEffect, useState } from "react";
 
@@ -80,7 +80,7 @@ const Header = () => {
 
   return (
     <>
-      <Profile className="profile" />
+      <ProfileButton className="ProfileButton" />
 
       <AuthNav className="authNav" />
     </>

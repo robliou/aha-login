@@ -5,6 +5,136 @@ import "./../styles/Profile.css";
 import { Table } from "react-bootstrap";
 import API from "./API";
 
+const Table = tw.table`
+  table-fixed
+  text-base
+  text-gray-900
+  
+
+
+ 
+`;
+
+const TableHead = tw.thead`
+    
+`;
+
+const TableRow = tw.tr`
+border
+border-green-500
+hover:bg-green-200
+`;
+
+const TableHeader = tw.th`
+border
+border-green-500
+p-2
+`;
+
+const TableBody = tw.tbody`
+`;
+
+//TableData is where the borders of the table are set!
+const TableData = tw.td`
+border-0
+
+p-5
+`;
+
+const Button = tw.button`
+  pl-4
+  pr-4
+  pt-2
+  pb-2
+  text-black
+  rounded-md
+  bg-green-300
+  hover:bg-green-200
+  transition-colors
+`;
+
+const offersData = useMemo(() => [...offers], [offers]);
+
+const offersColumns = useMemo(
+  () =>
+    offers[0]
+      ? Object.keys(offers[0])
+          .filter((key) => key !== "rating")
+          .map((key) => {
+            if (key === "image")
+              return {
+                Header: key,
+                accessor: key,
+                Cell: ({ value }) => <img src={value} />,
+                maxWidth: 70,
+              };
+
+            return { Header: key, accessor: key };
+          })
+      : [],
+  [offers]
+);
+
+const tableHooks = (hooks) => {
+  /* Object.entries(this.response).map({})=>(
+    <li key={buy_offer_id}>
+      <Link to={`/buy/${row.values.buy_offer_id}`}>
+
+      </Link>
+    </li> */
+
+  hooks.visibleColumns.push((columns) => [
+    ...columns,
+    {
+      id: "Select",
+      Header: "Select",
+      Cell: ({ row }) => (
+        <Link
+          to={{
+            pathname: `/buy/${row.values.buy_offer_id}`,
+          }}
+        >
+          <Button
+            onClick={() => alert("Selecting: " + row.values.buy_offer_id)}
+          >
+            {" "}
+            Select
+          </Button>
+        </Link>
+      ),
+    },
+    //To note- data is a required option within React useTable.. or is it referring to data defined above?
+    //Cell; row are options within React table
+    //Above, it is saying, for every row, under this header, insert this button with this functionality?
+  ]);
+};
+const tableInstance = useTable(
+  {
+    columns: offersColumns,
+    data: offersData,
+  },
+  useGlobalFilter,
+  tableHooks,
+  useSortBy
+);
+
+const {
+  getTableProps,
+  getTableBodyProps,
+  headerGroups,
+  rows,
+  prepareRow,
+  preGlobalFilteredRows,
+  setGlobalFilter,
+  state,
+} = tableInstance;
+
+useEffect(() => {
+  fetchOffers();
+}, []);
+
+const isEven = (idx) => idx % 2 === 0;
+
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
@@ -61,31 +191,6 @@ const Profile = () => {
       });
   };
 
-  const fetchUser = async () => {
-    const response = await fetch(
-      "postgres://mcdyzqzn:tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js@john.db.elephantsql.com/mcdyzqzn/users"
-    )
-      .then((response) => response.json()) // one extra step
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => console.error(error));
-
-    if (response) {
-      const users2 = response.data;
-
-      console.log("Users:", users2);
-    }
-  };
-
-  /* if(loading) return 'Loading...';
-if(error) return `Error! ${error.message}`;    
- 
-
-  /* 
-if(user_loading) return 'Loading...';
-if(user_error) return `Error! ${user_error.message}`;   */
-
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -94,22 +199,6 @@ if(user_error) return `Error! ${user_error.message}`;   */
     isAuthenticated && (
       <div id="profileContainer">
         <div>
-          <div id="userInfo">
-            <br></br>
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th> {user.email}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr></tr>
-              </tbody>
-            </Table>
-          </div>
-
-          <br></br>
-
           <button class="buttonProfile" onClick={() => grabUser()}>
             Fetch User
           </button>
