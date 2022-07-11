@@ -4,14 +4,14 @@ const usersRouter = express.Router();
 var pg = require("pg");
 
 const Pool = require("pg").Pool;
-/* const pool = new Pool({
+const pool = new Pool({
   user: "mcdyzqzn",
   host: "john.db.elephantsql.com",
   database: "mcdyzqzn",
   password: "tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js",
   //Above needs to get hidden on production!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   port: 5432,
-}); */
+});
 
 const connectionString = process.env.PSQL_CONNECTION;
 
@@ -23,12 +23,12 @@ client.connect(function (err) {
   }
 });
 
-/* const pool = new Pool({
+/*  const pool = new Pool({
   connectionString,
-}); */
+});  */
 
 usersRouter.getUsers = (request, response) => {
-  client.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
+  pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
     if (error) {
       throw error;
     }
@@ -37,7 +37,7 @@ usersRouter.getUsers = (request, response) => {
 };
 
 const getUsers = (request, response) => {
-  client.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
+  pool.query("SELECT * FROM users ORDER BY email ASC", (error, results) => {
     if (error) {
       throw error;
     }
