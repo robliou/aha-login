@@ -33,6 +33,26 @@ const Profile = () => {
     }
   }; */
 
+  var axios = require("axios").default;
+
+  var options = {
+    method: "GET",
+    url: '"postgres://mcdyzqzn:tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js@john.db.elephantsql.com/mcdyzqzn/user',
+    params: { q: 'email:"jane@exampleco.com"', search_engine: "v3" },
+    headers: { authorization: "Bearer YOUR_MGMT_API_ACCESS_TOKEN" },
+  };
+
+  const grabUser = () => {
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   const fetchUser = async () => {
     const response = await fetch(
       "postgres://mcdyzqzn:tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js@john.db.elephantsql.com/mcdyzqzn/users"
@@ -82,7 +102,7 @@ if(user_error) return `Error! ${user_error.message}`;   */
 
           <br></br>
 
-          <button class="buttonProfile" onClick={() => fetchUser()}>
+          <button class="buttonProfile" onClick={() => grabUser()}>
             Fetch User
           </button>
         </div>
