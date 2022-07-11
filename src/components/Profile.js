@@ -34,7 +34,9 @@ const Profile = () => {
   }; */
 
   const fetchUser = async () => {
-    const response = await fetch("API/users")
+    const response = await fetch(
+      "postgres://mcdyzqzn:tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js@john.db.elephantsql.com/mcdyzqzn/users"
+    )
       .then((response) => response.json()) // one extra step
       .then((data) => {
         console.log(data);
