@@ -1,9 +1,15 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./../styles/Profile.css";
-import { Table } from "react-bootstrap";
 import API from "./API";
+
+import { GlobalFilter } from "./globalFilter";
+
+import { Link } from "react-router-dom";
+
+import { useGlobalFilter, useSortBy, useTable } from "react-table";
+import tw from "twin.macro";
 
 const Table = tw.table`
   table-fixed
@@ -53,93 +59,91 @@ const Button = tw.button`
   transition-colors
 `;
 
-const offersData = useMemo(() => [...offers], [offers]);
+const Profile = () => {
+  const [users, setUsers] = useState([]);
 
-const offersColumns = useMemo(
-  () =>
-    offers[0]
-      ? Object.keys(offers[0])
-          .filter((key) => key !== "rating")
-          .map((key) => {
-            if (key === "image")
-              return {
-                Header: key,
-                accessor: key,
-                Cell: ({ value }) => <img src={value} />,
-                maxWidth: 70,
-              };
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const [userMetadata, setUserMetadata] = useState(null);
 
-            return { Header: key, accessor: key };
-          })
-      : [],
-  [offers]
-);
+  const [visible, setVisible] = useState("false");
 
-const tableHooks = (hooks) => {
-  /* Object.entries(this.response).map({})=>(
+  const offersData = useMemo(() => [...offers], [offers]);
+
+  const offersColumns = useMemo(
+    () =>
+      users[0]
+        ? Object.keys(users[0])
+            .filter((key) => key !== "email")
+            .map((key) => {
+              if (key === "email")
+                return {
+                  Header: key,
+                  accessor: key,
+                  Cell: ({ value }) => <img src={value} />,
+                  maxWidth: 70,
+                };
+
+              return { Header: key, accessor: key };
+            })
+        : [],
+    [users]
+  );
+
+  const tableHooks = (hooks) => {
+    /* Object.entries(this.response).map({})=>(
     <li key={buy_offer_id}>
       <Link to={`/buy/${row.values.buy_offer_id}`}>
 
       </Link>
     </li> */
 
-  hooks.visibleColumns.push((columns) => [
-    ...columns,
-    {
-      id: "Select",
-      Header: "Select",
-      Cell: ({ row }) => (
-        <Link
-          to={{
-            pathname: `/buy/${row.values.buy_offer_id}`,
-          }}
-        >
-          <Button
-            onClick={() => alert("Selecting: " + row.values.buy_offer_id)}
+    hooks.visibleColumns.push((columns) => [
+      ...columns,
+      {
+        id: "Select",
+        Header: "Select",
+        Cell: ({ row }) => (
+          <Link
+            to={{
+              pathname: `/buy/${row.values.buy_offer_id}`,
+            }}
           >
-            {" "}
-            Select
-          </Button>
-        </Link>
-      ),
+            <Button
+              onClick={() => alert("Selecting: " + row.values.buy_offer_id)}
+            >
+              {" "}
+              Select
+            </Button>
+          </Link>
+        ),
+      },
+      //To note- data is a required option within React useTable.. or is it referring to data defined above?
+      //Cell; row are options within React table
+      //Above, it is saying, for every row, under this header, insert this button with this functionality?
+    ]);
+  };
+  const tableInstance = useTable(
+    {
+      columns: offersColumns,
+      data: offersData,
     },
-    //To note- data is a required option within React useTable.. or is it referring to data defined above?
-    //Cell; row are options within React table
-    //Above, it is saying, for every row, under this header, insert this button with this functionality?
-  ]);
-};
-const tableInstance = useTable(
-  {
-    columns: offersColumns,
-    data: offersData,
-  },
-  useGlobalFilter,
-  tableHooks,
-  useSortBy
-);
+    useGlobalFilter,
+    tableHooks,
+    useSortBy
+  );
 
-const {
-  getTableProps,
-  getTableBodyProps,
-  headerGroups,
-  rows,
-  prepareRow,
-  preGlobalFilteredRows,
-  setGlobalFilter,
-  state,
-} = tableInstance;
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    preGlobalFilteredRows,
+    setGlobalFilter,
+    state,
+  } = tableInstance;
 
-useEffect(() => {
-  fetchOffers();
-}, []);
-
-const isEven = (idx) => idx % 2 === 0;
-
-const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(null);
-
-  const [visible, setVisible] = useState("false");
+  const isEven = (idx) => idx % 2 === 0;
 
   /* const { loading, error, data } = useQuery( UsersQuery);   */
 
@@ -191,6 +195,10 @@ const Profile = () => {
       });
   };
 
+  useEffect(() => {
+    grabUser();
+  }, []);
+
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -198,11 +206,45 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div id="profileContainer">
-        <div>
-          <button class="buttonProfile" onClick={() => grabUser()}>
-            Fetch User
-          </button>
-        </div>
+        <GlobalFilter
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          setGlobalFilter={setGlobalFilter}
+          globalFilter={state.globalFilter}
+        />
+        <Table {...getTableProps()}>
+          <TableHead>
+            {headerGroups.map((headerGroup) => (
+              <TableRow {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <TableHeader
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                  >
+                    {column.render("Header")}
+                    {column.isSorted ? (column.isSortedDesc ? " ▼" : " ▲") : ""}
+                  </TableHeader>
+                ))}
+              </TableRow>
+            ))}
+          </TableHead>
+          <TableBody {...getTableBodyProps()}>
+            {rows.map((row, idx) => {
+              prepareRow(row);
+
+              return (
+                <TableRow
+                  {...row.getRowProps()}
+                  className={isEven(idx) ? "bg-green-400 bg-opacity-30" : ""}
+                >
+                  {row.cells.map((cell, idx) => (
+                    <TableData {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </TableData>
+                  ))}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       </div>
     )
   );
