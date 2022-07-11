@@ -1,8 +1,5 @@
-
-import '../styles/Home.css';
-import styles from '../styles/Home.css';
-
-
+import "../styles/Home.css";
+import styles from "../styles/Home.css";
 
 import React, { useEffect, useState } from "react";
 
@@ -11,7 +8,7 @@ export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
 //From the Odyssey lift-off-pt3 doc
 
 function isMobileDevice() {
-  return 'ontouchstart' in window || 'onmsgesturechange' in window;
+  return "ontouchstart" in window || "onmsgesturechange" in window;
 }
 
 async function connect(onConnected) {
@@ -51,22 +48,17 @@ function Connect({ setUserAddress }) {
     const metamaskAppDeepLink = "https://metamask.app.link/dapp/" + dappUrl;
     return (
       <a href={metamaskAppDeepLink}>
-         <button className={styles.button}>
-           Connect to MetaMask
-         </button>
+        <button className={styles.button}>Connect to MetaMask</button>
       </a>
     );
   }
 
-  
   return (
-    <button  className={styles.button}onClick={() => connect(setUserAddress)}>
+    <button className={styles.button} onClick={() => connect(setUserAddress)}>
       Connect to MetaMask
     </button>
   );
 }
-
-
 
 const Root = () => {
   const [userAddress, setUserAddress] = useState("");
@@ -75,44 +67,23 @@ const Root = () => {
     checkIfWalletIsConnected(setUserAddress);
   }, []);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     onAddressChanged(userAddress);
   }, [userAddress]); */
 
-
-
- 
-  
-  
-  
-  
-
-    return (
-
-      
-     
-        <div className="wrapper">
-
-<div id="banner">
-        <h1 id="h1prop"> 
-          <strong>  Welcome to Rob's <br></br> RCT Login Demo. <br></br>Please Login or Sign-up! <br /> </strong>
-              
-        </h1>    
-
-        
-                </div>
-
-                  
-
-    
-               
-                  
-           
-   
-
-        
-    </div>    
-    )
-}
+  return (
+    <div className="wrapper">
+      <div id="banner">
+        <h1 id="h1prop">
+          <strong>
+            {" "}
+            Welcome to Rob's <br></br> Aha! Login Demo. <br></br>Please Login or
+            Sign-up! <br />{" "}
+          </strong>
+        </h1>
+      </div>
+    </div>
+  );
+};
 
 export default Root;
