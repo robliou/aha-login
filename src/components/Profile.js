@@ -42,7 +42,7 @@ const Profile = () => {
       .catch((error) => console.error(error));
 
     if (response) {
-      const users2 = response.data;
+      const users2 = response.data[0];
 
       console.log("Users:", users2);
     }
