@@ -23,7 +23,7 @@ const Profile = () => {
    */
   const fetchUser = async () => {
     const response = await axios
-      .get(API + "/users")
+      .get(`${API}users`)
       .catch((err) => console.log(err));
 
     if (response) {
@@ -35,7 +35,7 @@ const Profile = () => {
 
   /* if(loading) return 'Loading...';
 if(error) return `Error! ${error.message}`;    
- */
+ 
 
   /* 
 if(user_loading) return 'Loading...';
