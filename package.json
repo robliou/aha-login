@@ -33,6 +33,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-table": "^7.8.0",
+    "request": "^2.88.2",
     "serve": "^13.0.4",
     "twin.macro": "^2.8.2",
     "util": "^0.12.4",
