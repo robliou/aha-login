@@ -1,0 +1,467 @@
+
+  #grid{
+    display: grid;
+    align-items: start;
+    justify-items: center;
+    grid-template-columns: repeat (2, 1 fr);
+    grid-template-rows: repeat (3, 1 fr);
+    gap: 8px;
+    border-bottom: 1px rgb(221, 221, 233) solid;
+    justify-content: center;
+    overflow-x: hidden;
+
+   
+  
+  }
+ 
+  #banner_sell {
+    background-image:url("../images/color-gradient-2.jpg");
+      grid-row-start: 1; 
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: inherit;
+    background-position: center;
+     height: 18rem; 
+    width: 100%;
+     background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    background-size: cover;
+    
+  }
+
+  .h1{
+    color:white;
+    font-size: 2.5vw;
+  }
+
+ 
+
+
+  #trackDetails_buyIndex{
+    grid-row: 2 / span 1;
+    grid-column: 1 /span 1;
+    display: block;
+    flex-direction: 'column';
+    align-Items: center;
+    padding: 12px;
+    border-Radius: 4;
+    margin-top: 6vw;
+    margin-left: 8vw;
+     border: 'solid 1px silver';
+    background-Color: 'silver'; 
+
+    
+  }
+
+  #picture_area_track_buyIndex{
+    grid-row: 2 / span 1;
+    grid-column: 3 /span 1;
+    margin-right: 5vw;
+  }
+
+  #coverImage_buy{
+    align-items: center;
+    justify-content: center; 
+    border-color: beige #1c87c9;
+    border-image: none;
+    border-radius: 50% 50% 50% 50%;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-right: 15px;
+
+  }
+
+  
+  #coverImage_sellDetail{
+  
+    align-items: center;
+    justify-content: center; 
+    border-color: beige #1c87c9;
+    border-image: none;
+    border-radius: 50% 50% 50% 50%;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 13vw;
+    
+
+  }
+
+  #BottomDetail_buyIndex{
+    grid-row: 3 / span 1;
+    grid-column: 1 /span 1;
+    margin-left: 8vw;
+    margin-bottom: 10vw;
+    margin-right: 5vw;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    padding: 12px;
+    text-align: center;
+
+  }
+  #box_track_buyIndex{
+    grid-row-start: 3; 
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    padding: 12px;
+    margin-right: 5vw;
+    margin-bottom: 1vw;
+
+  }
+
+ 
+
+    #DetailRow{
+    display: 'flex';
+    flex-direction: 'row';
+    justify-content: 'space-between';
+    align-items: 'center';
+    width: '100%';
+    padding-Bottom: 20;
+    margin-Bottom: 20;
+    border-Bottom: 'solid 1px red';
+  };
+  
+   #DetailItem{
+    display: 'flex';
+    flex-direction: 'column';
+    align-Items: 'center';
+    justify-Content: 'space-between';
+    color: 'grey';
+    align-Self: 'center';
+  };
+  
+  #AuthorImage {
+    height: 30;
+    width: 30;
+    margin-Bottom: 8;
+    border-Radius: '50%';
+    object-Fit: 'cover';
+  };
+  
+  #AuthorName {
+    line-Height: '1em';
+    font-size: xx-large;
+  };
+  
+  #IconAndLabel {
+    display: 'flex';
+    flex: 'row';
+    align-Items: 'center';
+    max-Height: 20;
+    width: '100%';
+
+  };
+
+
+  .nav-item{
+    justify-content: space-between;
+   }
+  
+
+  #controlled-tab-example-tab-home{
+    color: black !important;
+    background-color: green;
+    font-style: italic;
+    border-top-color: black;
+    
+
+    
+
+  }
+
+  #controlled-tab-example-tab-research{
+    color: black !important;
+    background-color:  transparent;
+    font-style: italic;
+
+  }
+
+ 
+
+  #tab1{
+    color: black;
+  }
+
+  .Headline {
+    
+    text-align: center;  
+  }
+
+  .result {
+    
+    text-align: right; 
+    color: 'black';
+  }
+
+  #buttonInput{
+    margin: 0 auto;
+
+  }
+
+
+  #linkedinButton{
+    margin-right: 60px;
+
+    }
+
+  
+  button{
+   
+    padding-top: 0.5rem; 
+padding-bottom: 0.5rem; 
+padding-right: 5rem; 
+padding-left: 1rem; 
+background-color: #6EE7B7; 
+transition-property: background-color, border-color, color, fill, stroke; 
+color: #000000; 
+border-radius: 0.375rem; 
+
+
+}
+
+  @media only screen and (max-width: 768px){
+
+    #grid{
+      min-height: 0;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 1fr ;
+      grid-template-rows:(6, 1fr);
+    }
+
+    .h1{
+ 
+      max-width: 350px;
+    }
+
+   
+
+    #picture_area_track_buyIndex{
+      grid-row: 2 / span 1;
+      grid-column: 1 /span 1;
+      margin: 15% 15% -25% 15%;
+      height: 70%;
+
+    }
+  
+
+  
+    #coverImage_buy{
+      display: grid;
+/*        height: 70vw;
+ */      
+      border-color: beige #1c87c9;
+      border-image: none;
+/*       border-radius: 50% 50% 50% 50%;
+ */      border-style: solid;
+      border-width: 1px;
+      background-image:url("../images/LIProfile.jpg");
+      overflow: hidden;
+      height: 90%;
+      margin: auto;
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+      margin-bottom: 10px;
+
+
+     /*  margin-top: 30px;
+      margin-right: 100px; */
+      
+    }
+
+    #linkedinButton_buyIndex{
+
+      margin-top: 30px;
+  
+      }
+  
+
+    #trackDetails_buyIndex{
+      grid-row: 3 / span 1;
+      grid-column: 1 / span 1;
+      text-align: center;
+      align-items: center;
+      margin: 5% 5% 5% 5%;
+
+    }
+
+    #BottomDetail_buyIndex{
+      grid-row: 4 / span 1;
+/*       margin-left: 150px;
+ */      grid-column: 1 /span 1;
+      margin: 10% 10% 10% 10%;
+      text-align: center;
+
+
+
+    }
+
+    #qualifications{
+      margin-left: 10px;
+      margin-right: 10px;
+      text-align: center;
+
+      
+    }
+
+    #offer_details{
+      margin-left: 10px;
+      margin-right: 10px;
+
+    }
+
+    #box_track_buyIndex{
+      grid-row: 5 / span 1;
+      grid-column: 1 /span 1;
+
+      box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+         
+       padding: 2vw;
+       display: 'flex';
+      flex-Direction: 'column';
+      margin: 5% 5% 5% 8%;
+        height: 90vw;
+
+       padding-top: 3vw;
+       padding-bottom: 3px;
+  
+    }
+
+    #buttonInput{
+      margin: 0 auto;
+      display: grid;
+
+      align-items: center;
+      justify-content: center; 
+      align-content: center;
+
+    }
+  }
+
+    @media only screen and (min-width: 769px) and (max-width:1024px) {
+
+      #grid{
+        min-height: 0;
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 1fr ;
+        grid-template-rows:  (6, 1fr);
+      }
+  
+      .h1{
+   
+        max-width: 500px;
+      }
+  
+     
+  
+      #picture_area_track_buyIndex{
+        grid-row: 2 / span 1;
+        grid-column: 1 /span 1;
+        margin: 15% 15% 5% 15%;
+        height: 90%;
+  
+  
+  
+      }
+    
+  
+    
+      #coverImage_buy{
+        display: grid;
+  /*        height: 70vw;
+   */      
+        border-color: beige #1c87c9;
+        border-image: none;
+  /*       border-radius: 50% 50% 50% 50%;
+   */      border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        height: 90%;
+        margin: auto;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  
+  
+       /*  margin-top: 30px;
+        margin-right: 100px; */
+        
+      }
+  
+      #linkedinButton{
+        margin: auto;
+    
+        }
+    
+  
+      #trackDetails_buyIndex{
+        grid-row: 3 / span 1;
+        grid-column: 1 / span 1;
+        display: grid;
+        width: 90%;
+        align-items: center;
+        justify-content: center; 
+        align-content: center;
+        margin: 0% 0% 0% 45%;
+  
+      }
+  
+      #BottomDetail_buyIndex{
+        grid-row: 4 / span 1;
+  /*       margin-left: 150px;
+   */      grid-column: 1 /span 1;
+        margin: 0% 10% 0% 10%;
+        
+  
+  
+      }
+  
+      #qualifications{
+        margin-left: 10px;
+        margin-right: 10px;
+        
+        
+      }
+  
+      #offer_details{
+        margin-left: 10px;
+        margin-right: 10px;
+  
+      }
+  
+      #box_track_buyIndex{
+        grid-row: 5 / span 1;
+        grid-column: 1 /span 1;
+  
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+           
+         padding: 2vw;
+         display: 'flex';
+        flex-Direction: 'column';
+        margin: 5% 5% 5% 8%;
+          height: 45vw;
+  
+         padding-top: 3vw;
+         padding-bottom: 3px;
+    
+      }
+  
+      #buttonInput{
+        margin: 0 auto;
+        display: grid;
+  
+        align-items: center;
+        justify-content: center; 
+        align-content: center;
+  
+      }
+  
+      
+  }

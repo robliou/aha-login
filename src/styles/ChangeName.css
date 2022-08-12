@@ -1,0 +1,267 @@
+
+  .flex-container{
+    display: flex;
+  flex-direction: row;
+     min-width: 85%;
+    max-width: 85%; 
+    margin-left: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    border: 1px rgb(218, 213, 218) solid;
+
+    
+    /* justify-items: center;
+  justify-content: center;
+  text-align: center; */
+  
+  
+    
+  
+  }
+
+  #dropdown-menu-align-right2{
+    width:22em;
+  }
+
+  .flex-outer{
+
+    list-style-type: none;
+  padding: 0;
+
+  }
+
+  .largeformfield{
+    line-height:200%;
+    padding: 15px 10px;
+  }
+
+  .prefix {
+    margin-right: -400px;
+    position: right;
+  }
+
+  .pageContainer {
+    display: grid;
+    grid-row: 1 / span 1;
+    grid-column: 1 /span 1;
+    justify-content: right;
+    margin: var(--margin);
+    padding: 3vw;
+    max-width: 76vw;
+    min-width: 76vw;
+    background-color: rgb(250, 250, 249);
+    border-radius: var(--border-radius-outer);
+    box-shadow: var(--box-shadow);
+    border: 1px rgb(223, 223, 106) solid;
+
+  }
+
+  
+
+  .Headline {
+    
+    text-align: center;  
+  }
+
+  .result {
+    
+    text-align: right; 
+    color: 'black';
+  }
+
+  
+
+
+/*   body {
+     font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
+   background: #3AAFAB;
+   color: #fff; 
+   padding: 50px 0;
+  } */
+  
+  #container_Buy {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    border: 1px rgb(223, 223, 106) solid;
+    background: #3AAFAB;
+   
+  }
+  
+  .container * {
+    box-sizing: border-box;
+  }
+  
+  .flex-outer,
+  .flex-inner {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .flex-outer {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .flex-outer li,
+  .flex-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .flex-inner {
+    padding: 0 8px;
+    justify-content: space-between;  
+  }
+  
+  .flex-outer > li:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  
+  .flex-outer li label,
+  .flex-outer li p {
+    padding: 8px;
+    font-weight: 300;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .flex-outer > li > label,
+  .flex-outer li p {
+    flex: 1 0 120px;
+    max-width: 220px;
+  }
+  
+  .flex-outer > li > label + *,
+  .flex-inner {
+    flex: 1 0 220px;
+  }
+  
+  .flex-outer li p {
+    margin: 0;
+  }
+  
+  .flex-outer li input:not([type='checkbox']),
+  .flex-outer li textarea {
+    padding: 15px;
+    border: none;
+    margin-left: 15%;
+  }
+
+  #qualifications_sell{
+    margin-left: 19%;
+  }
+  
+  .flex-outer li button {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+  }
+  
+  .flex-inner li {
+    width: 100px;
+  }
+
+  
+  @media only screen and (max-width: 768px){
+
+    .flex-outer li input:not([type='checkbox']), .flex-outer li textarea{
+      width: 220px;
+      margin-left: 19%;
+    }
+
+    .container-Sell{
+      width:100%;
+    }
+
+    .flex-container{
+      max-width: 100%;
+      flex-wrap: wrap;
+      display: block;
+
+    }
+
+
+    .flex-outer,
+  .flex-inner {
+    padding: 15px;
+  }
+    
+
+    .formfield{
+      display: block;
+      
+    }
+
+    .pageContainer{
+      display: block;
+      max-width: 100%;
+
+    }
+
+    .flex-outer li,
+    .flex-inner {
+      display: inline;
+      
+    }
+
+    .flex-outer > li > label,
+    .flex-outer li p {
+      max-width: 768px;
+    }
+
+    
+  .flex-outer > li > label + *,
+  .flex-inner {
+    flex: 1 0 220px;
+  }
+
+  #dropdown-menu-align-right{
+    display: inline;
+    max-width: 300px;
+    height: 80px;
+    white-space: normal;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-left: 30px;
+
+  }  
+
+  #submitMe{
+    margin-left: 110px;
+    margin-top: 15px;
+  }
+
+  #container_Buy {
+    width: 90%;
+   
+  }
+
+      
+  }
+
+  
+
+  @media only screen and (min-width: 769px) and (max-width:1024px) {
+    .pageContainer {
+    
+      padding: 2vw 2vw 2vw 2vw;
+      width: 100%;
+      
+  }
+
+  #container_Buy {
+    width: 90%;
+   
+  }
+}
