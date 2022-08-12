@@ -23,27 +23,49 @@ const Profile = () => {
     body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
   };
 
+  const optionsM2M = {
+    method: "GET",
+    url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+    headers: {
+      "content-type": "application/json",
+      authorization: "Bearer ACCESS_TOKEN",
+    },
+  };
+
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
     console.log(body);
-  });
+  }).then(
+    axios
+      .request(optionsM2M)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      })
+  );
 
-  const optionsM2M = {
-    method: "GET",
-    url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
-    headers: { authorization: "Bearer TOKEN" },
-  };
-
-  const fetchUser = () => {
-    axios(optionsM2M)
+  /*   const fetchUser = () => {
+    axios
+      .request(optionsM2M)
       .then((response) => {
         console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  };
+  }; */
+
+  /* axios
+    .request(optionsM2M)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    }); */
 
   return isAuthenticated ? (
     <div id="profileContainer">
@@ -72,9 +94,7 @@ const Profile = () => {
 
       <br></br>
 
-      <button class="buttonProfile" onClick={() => fetchUser()}>
-        Get Users
-      </button>
+      <button class="buttonProfile">Get Users</button>
       {visible === "true" ? (
         <div id="showSellOffers">
           Users info
