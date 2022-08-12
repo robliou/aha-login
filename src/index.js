@@ -24,10 +24,10 @@ root.render(
   <Auth0Provider
     domain="dev-7-8i89hb.us.auth0.com"
     clientId="yABzJ5U03ynSjSijYOEWkwymAt84CFDS"
-    /* redirectUri="https://aha-login.herokuapp.com" */
+    redirectUri="https://aha-login.herokuapp.com"
     //Note- unfreeze above and freeze below when going from production to local testing!
-    redirectUri="http://localhost:3000/"
-    audience="hasura"
+    /*     redirectUri="http://localhost:3000/home"
+     */ audience="hasura"
   >
     <ApolloProvider client={client}>
       <App />

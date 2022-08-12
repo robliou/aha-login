@@ -39,7 +39,7 @@ const ChangeName = () => {
   const [value, setValue] = useState("");
   const handleSelect = (e) => {
     console.log(e);
-    setOffer_type(e);
+    /* setOffer_type(e); */
   };
 
   const [create_buy_offers, { data, loading, error }] = useMutation(

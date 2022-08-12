@@ -35,13 +35,14 @@
     "react-table": "^7.8.0",
     "serve": "^13.0.4",
     "twin.macro": "^2.8.2",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4",
     "webpack-dev-server": "^4.9.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "scripts2": {
