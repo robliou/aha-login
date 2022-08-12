@@ -38,7 +38,8 @@
     "twin.macro": "^2.8.2",
     "util": "^0.12.4",
     "web-vitals": "^2.1.4",
-    "webpack-dev-server": "^4.9.3"
+    "webpack-dev-server": "^4.9.3",
+    "react-app-rewired": "^2.2.1"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -80,7 +81,7 @@
     "https-browserify": "^1.0.0",
     "os-browserify": "^0.3.0",
     "process": "^0.11.10",
-    "react-app-rewired": "^2.2.1",
+    
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0",
