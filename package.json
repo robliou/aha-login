@@ -1,16 +1,22 @@
 {
-  "name": "aha-login",
-  "version": "0.1.0",
-  "private": true,
+  "name": "heroku-cra-node",
+  "version": "3.0.0",
+  "description": "How to use create-react-app with a custom Node API on Heroku",
+  "engines": {
+    "node": "16.15.1"
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "cd react-ui/ && npm install && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
   "dependencies": {
-    "@apollo/client": "^3.6.8",
-    "@auth0/auth0-react": "^1.10.1",
-    "@chakra-ui/react": "^2.2.1",
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@apollo/client": "^3.6.9",
+    "@auth0/auth0-react": "^1.10.2",
+    "@emotion/react": "^11.10.0",
     "apollo-link": "^1.2.14",
     "apollo-link-batch-http": "^1.2.14",
     "apollo-link-context": "^1.0.20",
@@ -19,72 +25,21 @@
     "assert": "^2.0.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
-    "browserify-zlib": "^0.2.0",
-    "buffer": "^6.0.3",
-    "cors": "^2.8.5",
-    "crypto-browserify": "^3.12.0",
-    "dotenv-webpack": "^7.1.0",
-    "express": "^4.18.1",
-    "framer-motion": "^6.3.16",
-    "https-browserify": "^1.0.0",
-    "nav": "^0.0.2",
-    "navbar": "^2.1.0",
-    "navdropdown": "^1.0.0",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "pg": "^8.7.3",
-    "process": "^0.11.10",
-    "react": "^18.2.0",
+    "express": "^4.16.4",
+    "react": "18.2",
     "react-app-rewired": "^2.2.1",
-    "react-bootstrap": "^2.4.0",
-    "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "react-table": "^7.8.0",
-    "request": "^2.88.2",
-    "serve": "^13.0.4",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "twin.macro": "^2.8.2",
-    "url": "^0.11.0",
-    "util": "^0.12.4",
-    "web-vitals": "^2.1.4",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3"
+    "react-scripts": "^5.0.1"
   },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm install && react-app-rewired build"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mars/heroku-cra-node.git"
   },
-  "scripts2": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "dns": "file:./src/mock/dns"
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
+  "license": "MIT"
 }
