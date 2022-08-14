@@ -11,6 +11,7 @@ import API from "./API";
 const Profile = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
+  const [data, setData] = useState(null);
 
   const [visible, setVisible] = useState("false");
 
@@ -46,6 +47,17 @@ const Profile = () => {
         console.error(error);
       })
   );
+  //above sort of works
+
+  /*  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+  }).then(
+    fetch("https://dev-7-8i89hb.us.auth0.com/api/v2/")
+      .then((res) => res.json())
+      .then((data) => setData(data.message))
+  ); */
 
   /*   const fetchUser = () => {
     axios

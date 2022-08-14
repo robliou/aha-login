@@ -32,9 +32,8 @@ if (!isDev && cluster.isMaster) {
     res.send('{"message":"Hello from the custom server!"}');
   });
 
-  app.get("https://dev-7-8i89hb.us.auth0.com/api/v2/", function (req, res) {
+  app.get("*", function (req, res) {
     res.set("Content-Type", "application/json");
-    res.send('{"message":"Hello from the custom server!"}');
   });
 
   /*  app.get("/api", (req, res) => {
@@ -42,12 +41,12 @@ if (!isDev && cluster.isMaster) {
   }); */
 
   // All remaining requests return the React app, so it can handle routing.
-  app.get("*", function (request, response) {
+  /*   app.get("*", function (request, response) {
     response.sendFile(
       path.resolve(__dirname, "../react-ui/build", "index.html")
     );
   });
-
+ */
   app.listen(PORT, function () {
     console.error(
       `Node ${
