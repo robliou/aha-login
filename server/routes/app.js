@@ -8,10 +8,7 @@ const cors = require("cors");
 
 /* const port = 3000;
  */
-app.options(
-  "postgres://mcdyzqzn:tNZhAqSUXzbdvAGBM4QdN7kpQa-Rz3Js@john.db.elephantsql.com/mcdyzqzn",
-  cors()
-);
+app.options(cors());
 //app.options above worked to eliminate the CORS error!!! - https://stackoverflow.com/questions/67716707/cors-response-to-preflight-request-doesnt-pass-access-control-check-when-add-h
 
 const corsOptions = {

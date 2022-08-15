@@ -37,7 +37,9 @@ const Profile = () => {
     if (error) throw new Error(error);
 
     console.log(body);
-  }).then(
+  });
+
+  const getUsersData = function () {
     axios
       .request(optionsM2M)
       .then(function (response) {
@@ -45,8 +47,8 @@ const Profile = () => {
       })
       .catch(function (error) {
         console.error(error);
-      })
-  );
+      });
+  };
   //above sort of works
 
   /*  request(options, function (error, response, body) {
@@ -106,7 +108,10 @@ const Profile = () => {
 
       <br></br>
 
-      <button class="buttonProfile">Get Users</button>
+      <button class="buttonProfile" onClick={() => getUsersData()}>
+        Get Users
+      </button>
+
       {visible === "true" ? (
         <div id="showSellOffers">
           Users info
