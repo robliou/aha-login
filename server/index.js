@@ -45,9 +45,9 @@ if (!isDev && cluster.isMaster) {
     res.send('{"message":"Hello from the custom server!"}');
   });
 
-  app.get("*", function (req, res) {
+  /*  app.get("*", function (req, res) {
     res.set("Content-Type", "application/json");
-  });
+  }); */
 
   app.get("*", async (req, res) => {
     try {
