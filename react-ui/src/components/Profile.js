@@ -22,45 +22,8 @@ const Profile = () => {
 
   console.log(process.env);
 
-  /*   var options = {
-    method: "POST",
-    url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
-    headers: {
-      "content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
-  }; */
-
-  /*   const optionsM2M = {
-    method: "GET",
-    url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer ACCESS_TOKEN",
-      "Access-Control-Allow-Origin": "*",
-    },
-  }; */
-
-  /*   request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
-  });
- */
-  /*   const getUsersData = function () {
-    axios
-      .request(optionsM2M)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }; */
-
   var getAccessToken = function (callback) {
-    if (!process.env.REACT_APP_AUTH0_DOMAIN) {
+    if (!"dev-7-8i89hb.us.auth0.com") {
       callback(
         new Error(
           "The AUTH0_DOMAIN is required in order to get an access token (verify your configuration)."
@@ -70,16 +33,17 @@ const Profile = () => {
 
     var options = {
       method: "POST",
-      url: "https://" + process.env.REACT_APP_AUTH0_DOMAIN + "/oauth/token",
+      url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
       headers: {
         "cache-control": "no-cache",
         "content-type": "application/json",
       },
       body: {
-        audience: process.env.REACT_APP_RESOURCE_SERVER,
+        audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
-        client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
-        client_secret: process.env.REACT_APP_AUTH0_CLIENT_SECRET,
+        client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
+        client_secret:
+          "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
       },
       json: true,
     };
@@ -105,7 +69,7 @@ const Profile = () => {
 
     var management = new ManagementClient({
       token: accessToken,
-      domain: process.env.AUTH0_DOMAIN,
+      domain: "dev-7-8i89hb.us.auth0.com",
     });
 
     var params = {
