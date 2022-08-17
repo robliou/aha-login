@@ -1,5 +1,5 @@
 #profileContainer{
-    display: grid;
+    display: flexbox;
     align-items: center;
     align-content: center;
     justify-content: center;

@@ -11,16 +11,22 @@ import React, { useEffect, useState } from "react";
 //
 
 const Header = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-  const [userAddress, setUserAddress] = useState("");
-
-  return (
+  return isAuthenticated ? (
     <>
-      <ProfileButton className="ProfileButton" />
-
-      <AuthNav className="authNav" />
+      <div id="profileContainer">
+        <div id="AuthNav">
+          <AuthNav className="authNav" />
+        </div>
+      </div>
     </>
+  ) : (
+    <div id="profileContainer">
+      <div id="AuthNav">
+        <AuthNav className="authNav" />
+      </div>
+    </div>
   );
 };
 

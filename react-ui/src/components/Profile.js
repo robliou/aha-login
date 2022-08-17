@@ -23,7 +23,7 @@ const Profile = () => {
   console.log(process.env);
 
   var getAccessToken = function (callback) {
-    if (!"dev-7-8i89hb.us.auth0.com") {
+    if (!process.env.REACT_APP_AUTH0_DOMAIN) {
       callback(
         new Error(
           "The AUTH0_DOMAIN is required in order to get an access token (verify your configuration)."
@@ -33,17 +33,15 @@ const Profile = () => {
 
     var options = {
       method: "POST",
-      url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
+      url: "https://" + process.env.REACT_APP_AUTH0_DOMAIN + "/oauth/token",
       headers: {
-        "cache-control": "no-cache",
         "content-type": "application/json",
       },
       body: {
-        audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+        audience: process.env.REACT_APP_RESOURCE_SERVER,
         grant_type: "client_credentials",
-        client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
-        client_secret:
-          "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
+        client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
+        client_secret: process.env.REACT_APP_AUTH0_CLIENT_SECRET,
       },
       json: true,
     };
@@ -69,7 +67,7 @@ const Profile = () => {
 
     var management = new ManagementClient({
       token: accessToken,
-      domain: "dev-7-8i89hb.us.auth0.com",
+      domain: process.env.REACT_APP_AUTH0_DOMAIN,
     });
 
     var params = {
