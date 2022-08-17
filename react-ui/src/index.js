@@ -23,11 +23,15 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Auth0Provider
     domain="dev-7-8i89hb.us.auth0.com"
-    clientId="yABzJ5U03ynSjSijYOEWkwymAt84CFDS"
+    /*      clientId="6J2cpQGzD456WzodmDHXj4Kot4y84bgI"
+     */ clientId="yABzJ5U03ynSjSijYOEWkwymAt84CFDS"
     redirectUri="https://aha-login.herokuapp.com"
     //Note- unfreeze above and freeze below when going from production to local testing!
     /*     redirectUri="http://localhost:3000/home"
-     */ audience="hasura"
+     */ audience="https://dev-7-8i89hb.us.auth0.com/api/v2/"
+    cacheLocation={"localstorage"}
+    /*     audience="hasura"
+     */
   >
     <ApolloProvider client={client}>
       <App />

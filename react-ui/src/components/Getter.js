@@ -1,64 +1,81 @@
-import "../styles/Home.css";
+/* import "../styles/Home.css";
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import * as request from "request";
+import * as env from "./lib/env";
+
+var getAccessToken = function (callback) {
+  if (!env("AUTH0_DOMAIN")) {
+    callback(
+      new Error(
+        "The AUTH0_DOMAIN is required in order to get an access token (verify your configuration)."
+      )
+    );
+  }
+
+  var options = {
+    method: "POST",
+    url: "https://" + env("AUTH0_DOMAIN") + "/oauth/token",
+    headers: {
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+    },
+    body: {
+      audience: env("RESOURCE_SERVER"),
+      grant_type: "client_credentials",
+      client_id: env("AUTH0_CLIENT_ID"),
+      client_secret: env("AUTH0_CLIENT_SECRET"),
+    },
+    json: true,
+  };
+
+  request(options, function (err, res, body) {
+    if (err || res.statusCode < 200 || res.statusCode >= 300) {
+      return callback((res && res.body) || err);
+    }
+
+    callback(null, body.access_token);
+  });
+};
 
 const breakpoints = [480, 768, 992, 1200];
 export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
 //From the Odyssey lift-off-pt3 doc
-var request = require("request");
 
 const Getter = () => {
   const [data, setData] = React.useState(null);
   const [text, setText] = React.useState(null);
 
-  var options = {
-    method: "POST",
-    url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
-    headers: { "content-type": "application/json" },
-    body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
-  };
+  getAccessToken(function (err, accessToken) {
+    if (err) {
+      console.log(err);
+      return;
+    }
 
-  const optionsM2M = {
-    method: "GET",
-    url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer ACCESS_TOKEN",
-    },
-  };
-
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
+    // Call the Worldmappers API with the access token.
+    var options = {
+      url: "http://localhost:7001/api/directions?destination=Auth0%20Office",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+    };
+    request.get(options, function (err, res, body) {
+      if (err || res.statusCode < 200 || res.statusCode >= 300) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    });
   });
-
-  const getUsersData = function () {
-    axios
-      .request(optionsM2M)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
-
-  React.useEffect(() => {
-    fetch("http://localhost:3000/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
 
   return (
     <div className="App">
       <p>{!data ? "Loading..." : data}</p>
       <p>{!text ? "Loading..." : text}</p>
-      <button class="buttonProfile" onClick={() => getUsersData()}>
-        Get Users
-      </button>
+      <button class="buttonProfile">Get Users</button>
     </div>
   );
 };
 
 export default Getter;
+ */

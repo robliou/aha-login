@@ -13,8 +13,6 @@ import Logout from "./components/Logout";
 import UseMgmtAPI from "./components/UseMgmtAPI";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Profile from "./components/Profile";
-import Getter from "./components/Getter";
-import Fetcher from "./components/Fetcher";
 import UserDashboard from "./components/UserDashboard";
 
 function App() {
@@ -31,8 +29,6 @@ function App() {
         <Route path="/usemgmtapi/*" element={<UseMgmtAPI />} />
         <Route path="/profile/" element={<Profile />} />
         <Route path="/userdashboard/" element={<UserDashboard />} />
-        <Route path="/getter/" element={<Getter />} />
-        <Route path="/fetcher/" element={<Fetcher />} />
       </Routes>
     </Router>
   );
