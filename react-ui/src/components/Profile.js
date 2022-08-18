@@ -107,7 +107,8 @@ const Profile = () => {
 
     var management = new ManagementClient({
       token: accessToken,
-      domain: process.env.AUTH0_DOMAIN,
+
+      domain: "dev-7-8i89hb.us.auth0.com",
     });
 
     var params = {
