@@ -49,8 +49,25 @@ if (!isDev && cluster.isMaster) {
     res.set("Content-Type", "application/json");
   }); */
 
-  app.get("/users", async (req, res) => {
-    console.log(res);
+  app.get("*", async (req, res) => {
+    try {
+      const { apiRoute } = req.params;
+      const apiResponse = await fetch(
+        "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
+        }
+      );
+      const apiResponseJson = await apiResponse.json();
+      // await db.collection('collection').insertOne(apiResponseJson)
+      console.log(apiResponseJson);
+      res.send("Done – check console log");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Something went wrong");
+    }
   });
 
   // All remaining requests return the React app, so it can handle routing.

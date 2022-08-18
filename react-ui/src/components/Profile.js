@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./../styles/Profile.css";
+import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
@@ -11,6 +12,7 @@ require("dotenv").config({ path: "/.env" });
 /* var env = require("./lib/env");
  */ var ManagementClient = require("auth0").ManagementClient;
 
+
 /* import { response } from "express";
  */
 const Profile = () => {
@@ -19,37 +21,32 @@ const Profile = () => {
   const [usersObject, setUsersObject] = useState();
 
   const [visible, setVisible] = useState("false");
+
   var request = require("request");
 
-  console.log(process.env);
-
-  /*   var options = {
+  var options = {
     method: "POST",
     url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
-    headers: {
-      "content-type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
+    headers: { "content-type": "application/json" },
     body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
-  }; */
+  };
 
-  /*   const optionsM2M = {
+  const optionsM2M = {
     method: "GET",
     url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
     headers: {
       "content-type": "application/json",
       authorization: "Bearer ACCESS_TOKEN",
-      "Access-Control-Allow-Origin": "*",
     },
-  }; */
+  };
 
-  /*   request(options, function (error, response, body) {
+  request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
     console.log(body);
   });
- */
-  /*   const getUsersData = function () {
+
+  const getUsersData = function () {
     axios
       .request(optionsM2M)
       .then(function (response) {
@@ -57,6 +54,28 @@ const Profile = () => {
       })
       .catch(function (error) {
         console.error(error);
+      });
+  };
+  //above sort of works
+
+  /*  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+  }).then(
+    fetch("https://dev-7-8i89hb.us.auth0.com/api/v2/")
+      .then((res) => res.json())
+      .then((data) => setData(data.message))
+  ); */
+
+  /*   const fetchUser = () => {
+    axios
+      .request(optionsM2M)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }; */
 
@@ -170,6 +189,8 @@ const Profile = () => {
 
       {year()}
       {usersObject ? (
+
+
         <div id="showSellOffers">
           <strong>Users Signed In</strong>
           <Table striped bordered hover responsive>

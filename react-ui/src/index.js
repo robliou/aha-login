@@ -32,6 +32,8 @@ root.render(
     cacheLocation={"localstorage"}
     /*     audience="hasura"
      */
+
+
   >
     <ApolloProvider client={client}>
       <App />

@@ -17,7 +17,6 @@
     "apollo-link-error": "^1.1.13",
     "apollo-link-retry": "^2.2.16",
     "assert": "^2.0.0",
-    "auth0": "^2.42.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "bootstrap": "^5.2.0",
@@ -25,10 +24,8 @@
     "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "crypto-browserify": "^3.12.0",
-    "dotenv": "^16.0.1",
     "dotenv-webpack": "^7.1.0",
     "express": "^4.18.1",
-    "file-system": "^2.2.2",
     "framer-motion": "^6.3.16",
     "fs": "^0.0.1-security",
     "http-proxy-agent": "^5.0.0",
@@ -38,7 +35,6 @@
     "nav": "^0.0.2",
     "navbar": "^2.1.0",
     "navdropdown": "^1.0.0",
-    "nconf": "^0.12.0",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "pg": "^8.7.3",
@@ -60,8 +56,7 @@
     "web-vitals": "^2.1.4",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.3",
-    "winston": "^3.8.1"
+    "webpack-dev-server": "^4.9.3"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -101,4 +96,4 @@
   "devDependencies": {
     "@types/node": "^18.7.6"
   }
-}
+
