@@ -4,6 +4,8 @@ import "./../styles/Profile.css";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome?!?!?!?
 
@@ -11,7 +13,6 @@ require("dotenv").config({ path: "/.env" });
 
 /* var env = require("./lib/env");
  */ var ManagementClient = require("auth0").ManagementClient;
-
 
 /* import { response } from "express";
  */
@@ -189,8 +190,6 @@ const Profile = () => {
 
       {year()}
       {usersObject ? (
-
-
         <div id="showSellOffers">
           <strong>Users Signed In</strong>
           <Table striped bordered hover responsive>

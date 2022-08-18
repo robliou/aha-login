@@ -5,6 +5,7 @@ module.exports = function override(config, env) {
     fs: false,
     net: false,
     tls: false,
+    "superagent-proxy": false,
     assert: require.resolve("assert"),
     crypto: require.resolve("crypto-browserify"),
     http: require.resolve("stream-http"),
