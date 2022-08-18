@@ -13,8 +13,8 @@ import Logout from "./components/Logout";
 import UseMgmtAPI from "./components/UseMgmtAPI";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Profile from "./components/Profile";
-import UserDashboard from "./components/UserDashboard";
-
+/* import UserDashboard from "./components/UserDashboard";
+ */
 function App() {
   return (
     <Router>
@@ -28,7 +28,8 @@ function App() {
         <Route path="/logout/*" element={<Logout />} />
         <Route path="/usemgmtapi/*" element={<UseMgmtAPI />} />
         <Route path="/profile/" element={<Profile />} />
-        <Route path="/userdashboard/" element={<UserDashboard />} />
+        {/*         <Route path="/userdashboard/" element={<UserDashboard />} />
+         */}{" "}
       </Routes>
     </Router>
   );

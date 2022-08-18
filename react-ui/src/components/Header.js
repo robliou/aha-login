@@ -16,6 +16,9 @@ const Header = () => {
   return isAuthenticated ? (
     <>
       <div id="profileContainer">
+        <div id="ProfileButton">
+          <ProfileButton className="ProfileButton" />
+        </div>
         <div id="AuthNav">
           <AuthNav className="authNav" />
         </div>

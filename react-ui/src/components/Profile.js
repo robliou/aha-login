@@ -1,9 +1,10 @@
-import axios from "axios";
-/* import request from "request";
- */ import { useState } from "react";
+import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./../styles/Profile.css";
 import { Table } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+//This line was needed for my bootstrap stuff to work, for some strange reason
+//It also fixed my .css stuff in Chrome?!?!?!?
 
 require("dotenv").config({ path: "/.env" });
 
@@ -15,7 +16,7 @@ require("dotenv").config({ path: "/.env" });
 const Profile = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
-  const [data, setData] = useState(null);
+  const [usersObject, setUsersObject] = useState();
 
   const [visible, setVisible] = useState("false");
   var request = require("request");
@@ -80,9 +81,24 @@ const Profile = () => {
       if (err) {
         console.log(err);
       }
-      console.log(users);
+      console.log(users[0].name);
+      console.log(users[0].created_at);
+      setUsersObject(users);
+      console.log(usersObject[0].last_login);
     });
   });
+
+  function year() {
+    let table = document.createElement("table");
+    let row = document.createElement("tr");
+    let a = 0;
+    while (a < 10) {
+      let td = document.createElement("td");
+      td.innerHTML = 1;
+    }
+
+    table.appendChild(row);
+  }
 
   return isAuthenticated ? (
     <div id="profileContainer">
@@ -90,7 +106,8 @@ const Profile = () => {
         <div id="userInfo">
           <img src={user.picture} alt={user.name} id="profilePic" />
           <br></br>
-          <Table striped bordered hover responsive>
+          <strong>My Profile Info</strong>
+          <Table striped bordered hover responsive variant="dark">
             <thead>
               <tr>
                 <th>Name</th>
@@ -111,22 +128,25 @@ const Profile = () => {
 
       <br></br>
 
-      <button class="buttonProfile">Get Users</button>
-
-      {visible === "true" ? (
+      {year()}
+      {usersObject ? (
         <div id="showSellOffers">
-          Users info
+          <strong>Users Signed In</strong>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Headline</th>
-                <th>Offer details</th>
-                <th>Offer type</th>
+                <th>Name</th>
+                <th>Timestamp of user sign up</th>
+                <th># of Times Logged In</th>
+                <th>Timestamp of last user session</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td> </td>
+                <td>{usersObject[0].name} </td>
+                <td>{usersObject[0].created_at} </td>
+                <td>{usersObject[0].logins_count} </td>
+                <td>{usersObject[0].last_login} </td>
               </tr>
             </tbody>
           </Table>

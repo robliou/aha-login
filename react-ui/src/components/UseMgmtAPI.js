@@ -1,8 +1,4 @@
-var axios = require("axios").default;
-
 const UseMgmtAPI = () => {
-  var request = require("request");
-
   var axios = require("axios").default;
 
   var options = {

@@ -1,9 +1,10 @@
 const http = require("http");
-/* const jwt = require("express-jwt");
- */ const { expressjwt: jwt } = require("express-jwt");
+const morgan = require("morgan");
+
 const env = require("./lib/env");
-/* const logger = require("./lib/logger");
- */ const getPublicKey = require("./lib/getPublicKey");
+const logger = require("./lib/logger");
+const getPublicKey = require("./lib/getPublicKey");
+const requireScope = require("./lib/middleware/requireScope");
 require("dotenv").config();
 /*
  * Initialize express.
@@ -19,11 +20,17 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
+app.use(
+  morgan(":method :url :status :response-time ms - :res[content-length]", {
+    stream: logger.stream,
+  })
+);
+
 /*
  * Middleware that will validate the incoming access token.
  */
 const jwtCheck = jwt({
-  secret: getPublicKey("dev-7-8i89hb.us.auth0.com"),
+  secret: getPublicKey(process.env.AUTH0_DOMAIN),
   audience: process.env.RESOURCE_SERVER,
   algorithms: ["RS256"],
   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
@@ -36,7 +43,7 @@ app.use(cors(corsOptions));
 
 app.use("/api", jwtCheck, function (req, res, next) {
   if (req.user) {
-    console.log(
+    logger.debug(
       "Current user: " +
         req.user.sub +
         " (scope=" +
@@ -46,13 +53,45 @@ app.use("/api", jwtCheck, function (req, res, next) {
   }
   next();
 });
+app.get(
+  "/api/location/geocode",
+  requireScope("geocode:location"),
+  function (req, res, next) {
+    res.json({
+      lat: 47.6178819,
+      lng: -122.194041,
+    });
+  }
+);
+app.get(
+  "/api/location/reverse-geocode",
+  requireScope("reverse-geocode:location"),
+  function (req, res, next) {
+    res.json({
+      street: "10900 NE 8th Street",
+      city: "Bellevue",
+      state: "Washington",
+    });
+  }
+);
+app.get(
+  "/api/directions",
+  requireScope("directions"),
+  function (req, res, next) {
+    res.json([
+      { step: 1, action: "Turn left" },
+      { step: 2, action: "Turn right" },
+      { step: 3, action: "Finish" },
+    ]);
+  }
+);
 
 /*
  * Error handler
  */
 app.use(function (err, req, res, next) {
   if (err) {
-    console.log("Unauthorized:", err.message);
+    logger.error("Unauthorized:", err.message);
     return res.status(401).send({ message: err.message });
   }
 
@@ -67,7 +106,7 @@ app.get("/users", (req, res, next) => {
  * Start server.
  */
 http.createServer(app).listen(env("PORT"), function () {
-  console.log(
+  logger.info(
     "Worldmappers API (Resource Server) listening on: http://localhost:" +
       env("PORT")
   );

@@ -1,7 +1,7 @@
 import "../styles/Home.css";
 import styles from "../styles/Home.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const breakpoints = [480, 768, 992, 1200];
 export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
