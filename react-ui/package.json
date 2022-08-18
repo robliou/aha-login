@@ -97,5 +97,8 @@
     ]
   },
   "dns": "file:./src/mock/dns",
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "@types/node": "^18.7.6"
+  }
 }
