@@ -5,8 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import AuthorizedApolloProvider from "./AuthorizedApolloProvider";
-
+/* import AuthorizedApolloProvider from "./AuthorizedApolloProvider";
+ */
 const cache = new InMemoryCache();
 
 const fetcher = (...args) => {
@@ -32,8 +32,6 @@ root.render(
     cacheLocation={"localstorage"}
     /*     audience="hasura"
      */
-
-
   >
     <ApolloProvider client={client}>
       <App />

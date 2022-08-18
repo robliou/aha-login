@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./../styles/Profile.css";
-import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import axios from "axios";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome?!?!?!?
 
@@ -25,60 +25,18 @@ const Profile = () => {
 
   var request = require("request");
 
-  var options = {
+  /*   var options = {
     method: "POST",
     url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
     headers: { "content-type": "application/json" },
     body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
   };
 
-  const optionsM2M = {
-    method: "GET",
-    url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer ACCESS_TOKEN",
-    },
-  };
-
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
     console.log(body);
-  });
-
-  const getUsersData = function () {
-    axios
-      .request(optionsM2M)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
-  //above sort of works
-
-  /*  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
-  }).then(
-    fetch("https://dev-7-8i89hb.us.auth0.com/api/v2/")
-      .then((res) => res.json())
-      .then((data) => setData(data.message))
-  ); */
-
-  /*   const fetchUser = () => {
-    axios
-      .request(optionsM2M)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }; */
+  }); */
 
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
@@ -93,7 +51,6 @@ const Profile = () => {
       method: "POST",
       url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
       headers: {
-        "cache-control": "no-cache",
         "content-type": "application/json",
       },
       body: {
@@ -133,7 +90,7 @@ const Profile = () => {
 
     var params = {
       search_engine: "v3",
-      per_page: 10,
+      per_page: 30,
       page: 0,
     };
 
@@ -141,24 +98,11 @@ const Profile = () => {
       if (err) {
         console.log(err);
       }
-      console.log(users[0].name);
-      console.log(users[0].created_at);
       setUsersObject(users);
-      console.log(usersObject[0].last_login);
     });
   });
 
-  function year() {
-    let table = document.createElement("table");
-    let row = document.createElement("tr");
-    let a = 0;
-    while (a < 10) {
-      let td = document.createElement("td");
-      td.innerHTML = 1;
-    }
-
-    table.appendChild(row);
-  }
+  console.log(usersObject);
 
   return isAuthenticated ? (
     <div id="profileContainer">
@@ -173,12 +117,14 @@ const Profile = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>User ID</th>
+                <th>Nickname</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{user.name} </td>
                 <td>{user.email} </td>
+                <td>{user.sub} </td>
                 <td>{user.sub} </td>
               </tr>
             </tbody>
@@ -188,7 +134,6 @@ const Profile = () => {
 
       <br></br>
 
-      {year()}
       {usersObject ? (
         <div id="showSellOffers">
           <strong>Users Signed In</strong>
@@ -203,9 +148,46 @@ const Profile = () => {
             </thead>
             <tbody>
               <tr>
+                <td>{usersObject[0].nickname} </td>
+
                 <td>{usersObject[0].name} </td>
                 <td>{usersObject[0].created_at} </td>
                 <td>{usersObject[0].logins_count} </td>
+                <td>{usersObject[0].last_login} </td>
+              </tr>
+              <tr>
+                <td>{usersObject[1].name} </td>
+                <td>{usersObject[1].created_at} </td>
+                <td>{usersObject[1].logins_count} </td>
+                <td>{usersObject[1].last_login} </td>
+              </tr>
+              <tr>
+                <td>{usersObject[2].name} </td>
+                <td>{usersObject[2].created_at} </td>
+                <td>{usersObject[2].logins_count} </td>
+                <td>{usersObject[2].last_login} </td>
+              </tr>
+            </tbody>
+          </Table>
+
+          <strong>Users Signed In</strong>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th>Statistics</th>
+                <th># of Users Signed Up</th>
+                <th># of Users with Active Sessions Today</th>
+                <th>
+                  Average number of active session users in the last 7 days
+                  rolling.
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> </td>
+                <td>{usersObject.length} </td>
+                <td> </td>
                 <td>{usersObject[0].last_login} </td>
               </tr>
             </tbody>

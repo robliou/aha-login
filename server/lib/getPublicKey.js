@@ -10,7 +10,7 @@ function certToPEM(cert) {
 
 function getPublicKeyFromJwks(domain, callback) {
   var options = {
-    url: "https://" + domain + "/.well-known/jwks.json",
+    url: "https://" + domain + "/.well-known/.json",
     json: true,
   };
 

@@ -2,7 +2,6 @@ import "./../styles/header.css";
 import AuthNav from "./auth-nav";
 import { useAuth0 } from "@auth0/auth0-react";
 import ProfileButton from "./ProfileButton";
-import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 

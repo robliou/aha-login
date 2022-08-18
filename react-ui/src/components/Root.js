@@ -63,10 +63,6 @@ function Connect({ setUserAddress }) {
 const Root = () => {
   const [userAddress, setUserAddress] = useState("");
 
-  useEffect(() => {
-    checkIfWalletIsConnected(setUserAddress);
-  }, []);
-
   /*   useEffect(() => {
     onAddressChanged(userAddress);
   }, [userAddress]); */
