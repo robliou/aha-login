@@ -2,41 +2,17 @@ import { useState } from "react";
 //import {fetchingOffers, gotOffers, fetchingOffersFailed} from '../slice_reducers/offersSlice.js';
 import "./../styles/ChangeName.css";
 
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
-import { gql, useMutation } from "@apollo/client";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useNavigate } from "react-router-dom";
 
 var request = require("request");
+var ManagementClient = require("auth0").ManagementClient;
 
 const axios = require("axios");
 
 const ChangeName = () => {
-  const [nickname, setNickname] = useState("");
+  const [newNickname, setNickname] = useState("null");
 
-  let navigate = useNavigate();
-
-  /*   const user_id = user.sub;
-   */
-  //const [body, setBody] = useState('');
-
-  //const [values, handleChange] = UseForm({industry:"", offer_type:"", offer_details:"", price:"10", qualifications:"", user_id:"", buy_offer_id:""});
-  //const values = {industry, offer_type, offzer_details, price, qualifications, user_id, buy_offer_id};
-
-  const [accessToken, setAccessToken] = useState("");
-  const handleSelect = (e) => {
-    console.log(e);
-    /* setOffer_type(e); */
-  };
-
-  function redirectTo(props) {
-    navigate(`/${props}`);
-  }
-
-  /*   const { getAccessTokenSilently } = useAuth0();
-  const token = getAccessTokenSilently();
-  console.log(token); */
+  const { user } = useAuth0();
 
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
@@ -72,59 +48,36 @@ const ChangeName = () => {
     });
   };
 
-  getAccessToken(function (err, accessToken) {
-    if (err) {
-      console.log("Error getting a token:", err.message || err);
-      return;
-    }
-    console.log(accessToken);
-    console.log(
-      "Getting directions to the Auth0 Office from the World Mappers API"
-    );
-    setAccessToken(accessToken);
-
-    /*     var management = new ManagementClient({
-      token: accessToken,
-
-      domain: "dev-7-8i89hb.us.auth0.com",
-    });
-
-    var params = {
-      search_engine: "v3",
-      per_page: 30,
-      page: 0,
-    };
-
-    management.getUsers(params, function (err, users) {
-      if (err) {
-        console.log(err);
-      }
-      setUsersObject(users);
-    }); */
-  });
-
-  var options = {
-    method: "POST",
-    url: "https://dev-7-8i89hb.us.auth0.com/api/v2/users/{id}",
-    headers: {
-      authorization: accessToken,
-      "content-type": "application/json",
-    },
-    data: {
-      user_metadata: { username: nickname },
-    },
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
+    getAccessToken(function (err, accessToken) {
+      if (err) {
+        console.log("Error getting a token:", err.message || err);
+        return;
+      }
+
+      console.log("Posting nickname");
+
+      var management = new ManagementClient({
+        token: accessToken,
+
+        domain: "dev-7-8i89hb.us.auth0.com",
       });
+
+      var params = { id: user.user_id };
+      /*      var metadata = {
+        nickname: `'${newNickname}'`,
+      }; */
+      var data = { nickname: `'${newNickname}` };
+
+      management.updateUser(params, data, function (err, user) {
+        if (err) {
+          console.log(err);
+        }
+        // Updated user.
+        console.log(user.nickname);
+      });
+    });
 
     alert(
       'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
@@ -139,7 +92,8 @@ const ChangeName = () => {
   return (
     <div id="container_Buy">
       <h2 class="Headline">Current User Name is:</h2>
-      <h2>{nickname} </h2>
+      {/*       <h2>{user.nickname} </h2>
+       */}{" "}
       <br></br>
       <form onSubmit={handleSubmit}>
         <ul class="flex-outer">
@@ -151,7 +105,7 @@ const ChangeName = () => {
               type="string"
               id="nickname"
               name="nickname"
-              value={nickname}
+              value={newNickname}
               onChange={(e) => setNickname(e.target.value)}
               required
             />

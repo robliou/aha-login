@@ -1,6 +1,5 @@
 const http = require("http");
-/* const jwt = require("express-jwt");
- */ const { expressjwt: jwt } = require("express-jwt");
+const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
 /* const logger = require("./lib/logger");
  */ const getPublicKey = require("./lib/getPublicKey");
@@ -60,6 +59,14 @@ app.use(function (err, req, res, next) {
 });
 
 app.get("/users", (req, res, next) => {
+  console.log(res);
+});
+
+app.patch("*", (req, res, next) => {
+  console.log(res);
+});
+
+app.post("*", (req, res, next) => {
   console.log(res);
 });
 

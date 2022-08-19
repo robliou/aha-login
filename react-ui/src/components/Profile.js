@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./../styles/Profile.css";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 import axios from "axios";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome?!?!?!?
+const dayjs = require("dayjs");
 
 require("dotenv").config({ path: "/.env" });
 
@@ -17,26 +19,22 @@ require("dotenv").config({ path: "/.env" });
 /* import { response } from "express";
  */
 const Profile = () => {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const [userMetadata, setUserMetadata] = useState(null);
+  const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
 
   const [visible, setVisible] = useState("false");
 
   var request = require("request");
 
-  /*   var options = {
-    method: "POST",
-    url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
-    headers: { "content-type": "application/json" },
-    body: '{"client_id":"6J2cpQGzD456WzodmDHXj4Kot4y84bgI","client_secret":"fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F","audience":"https://dev-7-8i89hb.us.auth0.com/api/v2/","grant_type":"client_credentials"}',
-  };
+  let timeNow = dayjs().format("YYYY-MM-DD");
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+  let yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
 
-    console.log(body);
-  }); */
+  console.log("This is yesterdayJs" + yesterday);
+
+  let oneWeekAgo = dayjs().subtract(7, "day").format("YYYY-MM-DD");
+
+  console.log(yesterday);
 
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
@@ -77,10 +75,8 @@ const Profile = () => {
       console.log("Error getting a token:", err.message || err);
       return;
     }
-    console.log(accessToken);
-    console.log(
-      "Getting directions to the Auth0 Office from the World Mappers API"
-    );
+
+    console.log("Getting User Statistics");
 
     var management = new ManagementClient({
       token: accessToken,
@@ -99,10 +95,9 @@ const Profile = () => {
         console.log(err);
       }
       setUsersObject(users);
+      console.log(users);
     });
   });
-
-  console.log(usersObject);
 
   return isAuthenticated ? (
     <div id="profileContainer">
@@ -132,8 +127,6 @@ const Profile = () => {
         </div>
       </div>
 
-      <br></br>
-
       {usersObject ? (
         <div id="showSellOffers">
           <strong>Users Signed In</strong>
@@ -148,8 +141,6 @@ const Profile = () => {
             </thead>
             <tbody>
               <tr>
-                <td>{usersObject[0].nickname} </td>
-
                 <td>{usersObject[0].name} </td>
                 <td>{usersObject[0].created_at} </td>
                 <td>{usersObject[0].logins_count} </td>
@@ -167,14 +158,25 @@ const Profile = () => {
                 <td>{usersObject[2].logins_count} </td>
                 <td>{usersObject[2].last_login} </td>
               </tr>
+              <tr>
+                <td>{usersObject[3].name} </td>
+                <td>{usersObject[3].created_at} </td>
+                <td>{usersObject[3].logins_count} </td>
+                <td>{usersObject[3].last_login} </td>
+              </tr>
+              <tr>
+                <td>{usersObject[4].name} </td>
+                <td>{usersObject[4].created_at} </td>
+                <td>{usersObject[4].logins_count} </td>
+                <td>{usersObject[4].last_login} </td>
+              </tr>
             </tbody>
           </Table>
 
-          <strong>Users Signed In</strong>
+          <strong>Users Statistics</strong>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th>Statistics</th>
                 <th># of Users Signed Up</th>
                 <th># of Users with Active Sessions Today</th>
                 <th>
@@ -185,10 +187,24 @@ const Profile = () => {
             </thead>
             <tbody>
               <tr>
-                <td> </td>
                 <td>{usersObject.length} </td>
+                <Link
+                  to={{
+                    pathname: `/usersOneDay`,
+                  }}
+                >
+                  <Button id="usersOneDay"> More stats</Button>
+                </Link>
+                <td>
+                  <Link
+                    to={{
+                      pathname: `/usersOneDay`,
+                    }}
+                  >
+                    <Button id="usersOneDay"> More stats</Button>
+                  </Link>{" "}
+                </td>
                 <td> </td>
-                <td>{usersObject[0].last_login} </td>
               </tr>
             </tbody>
           </Table>
