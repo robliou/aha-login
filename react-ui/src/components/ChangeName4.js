@@ -5,7 +5,19 @@ import "./../styles/ChangeName.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 var request = require("request");
-var ManagementClient = require("auth0").ManagementClient;
+
+var options = {
+  method: "POST",
+  url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+  headers: { "content-type": "application/json" },
+  body: {
+    client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
+    client_secret:
+      "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
+    audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+    grant_type: "client_credentials",
+  },
+};
 
 const axios = require("axios");
 
@@ -50,39 +62,52 @@ const ChangeName = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getAccessToken(function (err, accessToken) {
-      if (err) {
-        console.log("Error getting a token:", err.message || err);
-        return;
-      }
+  };
 
-      console.log("Posting nickname");
+  getAccessToken(function (err, accessToken) {
+    if (err) {
+      console.log("Error getting a token:", err.message || err);
+      return;
+    }
 
-      var management = new ManagementClient({
-        token: accessToken,
+    console.log("Posting nickname");
 
-        domain: "dev-7-8i89hb.us.auth0.com",
-      });
+    console.log(accessToken);
 
-      var params = { id: user.user_id };
-      /*      var metadata = {
-        nickname: `'${newNickname}'`,
-      }; */
-      var data = { nickname: `'${newNickname}` };
+    request(options, function (err, res, body) {
+      if (err) console.log(err);
 
-      management.updateUser(params, data, function (err, user) {
-        if (err) {
-          console.log(err);
-        }
-        // Updated user.
-      });
+      const token = accessToken;
+
+      var options = {
+        method: "POST",
+        url: "https://dev-7-8i89hb.us.auth0.com/api/v2/users/auth0|507f1f77bcf86cd799439020",
+        headers: {
+          authorization: token,
+          "content-type": "application/json",
+        },
+        data: {
+          email: "jane.doe@example.com",
+          user_metadata: { hobby: "surfing" },
+          app_metadata: { plan: "full" },
+        },
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     });
 
     alert(
       'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
     );
     /* redirectTo("/Profile"); */
-  };
+  });
 
   /*    addBuy({variables:{industry: input.value, offer_type: input.value, 
       offer_details: input.value, price: input.value, qualifications: input.value, 

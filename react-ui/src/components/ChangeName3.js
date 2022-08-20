@@ -5,7 +5,19 @@ import "./../styles/ChangeName.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 var request = require("request");
-var ManagementClient = require("auth0").ManagementClient;
+
+var options = {
+  method: "POST",
+  url: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+  headers: { "content-type": "application/json" },
+  body: {
+    client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
+    client_secret:
+      "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
+    audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
+    grant_type: "client_credentials",
+  },
+};
 
 const axios = require("axios");
 
@@ -58,30 +70,36 @@ const ChangeName = () => {
 
       console.log("Posting nickname");
 
-      var management = new ManagementClient({
-        token: accessToken,
+      request(options, function (err, res, body) {
+        if (err) console.log(err);
 
-        domain: "dev-7-8i89hb.us.auth0.com",
+        const token = accessToken;
+
+        var options2 = {
+          method: "POST",
+          url: `https://dev-7-8i89hb.us.auth0.com/api/v2/users/{id}`,
+          headers: {
+            "content-type": "application/json",
+            authorization: token,
+          },
+          body: `{"nickname":"${newNickname}"}`,
+        };
+
+        axios
+          .request(options2)
+          .then(function (response) {
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
       });
 
-      var params = { id: user.user_id };
-      /*      var metadata = {
-        nickname: `'${newNickname}'`,
-      }; */
-      var data = { nickname: `'${newNickname}` };
-
-      management.updateUser(params, data, function (err, user) {
-        if (err) {
-          console.log(err);
-        }
-        // Updated user.
-      });
+      alert(
+        'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
+      );
+      /* redirectTo("/Profile"); */
     });
-
-    alert(
-      'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
-    );
-    /* redirectTo("/Profile"); */
   };
 
   /*    addBuy({variables:{industry: input.value, offer_type: input.value, 
