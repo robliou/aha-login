@@ -26,7 +26,10 @@ function App() {
         <Route path="/login/*" element={<Login />} />
         <Route path="/logout/*" element={<Logout />} />
 
-        <Route path="/profile/" element={<Profile />} />
+        <Route
+          path="/profile/"
+          element={<ProtectedRoute component={Profile} />}
+        />
         <Route path="/usersOneDay/" element={<UsersOneDay />} />
       </Routes>
     </Router>
