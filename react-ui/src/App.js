@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./styles/index.css";
 
-import Header from "./components/header";
+import Header from "./components/Header";
 import Home from "./components/Home";
 import Root from "./components/Root";
 import ChangeName from "./components/ChangeName";
