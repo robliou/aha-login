@@ -7,8 +7,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 var request = require("request");
 var ManagementClient = require("auth0").ManagementClient;
 
-const axios = require("axios");
-
 const ChangeName = () => {
   const [newNickname, setNickname] = useState("null");
 
@@ -102,8 +100,8 @@ const ChangeName = () => {
             </label>
             <input
               type="string"
-              id="nickname"
-              name="nickname"
+              id="newNickname"
+              name="newNickname"
               value={newNickname}
               onChange={(e) => setNickname(e.target.value)}
               required

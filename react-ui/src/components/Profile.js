@@ -5,7 +5,6 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome?!?!?!?
@@ -22,17 +21,11 @@ const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
 
-  const [visible, setVisible] = useState("false");
-
   var request = require("request");
-
-  let timeNow = dayjs().format("YYYY-MM-DD");
 
   let yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
 
   console.log("This is yesterdayJs" + yesterday);
-
-  let oneWeekAgo = dayjs().subtract(7, "day").format("YYYY-MM-DD");
 
   console.log(yesterday);
 
