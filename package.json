@@ -6,7 +6,7 @@
     "node": "16.15.1"
   },
   "scripts": {
-    "start": "cd server/ && nodemon server",
+    "start": "cd server/ && node server",
     "build": "cd react-ui/ && npm install && npm run build"
   },
   "cacheDirectories": [
