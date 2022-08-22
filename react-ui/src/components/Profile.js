@@ -105,6 +105,9 @@ const Profile = () => {
         <div id="userInfo">
           <img src={user.picture} alt={user.name} id="profilePic" />
           <br></br>
+          <div id="Dashboard">
+            <strong>User Dashboard</strong>
+          </div>
           <strong>My Profile Info</strong>
           <Table striped bordered hover responsive variant="dark">
             <thead>
