@@ -1,13 +1,13 @@
 import "./../styles/header.css";
 import AuthNav from "./auth-nav";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 //below from https://auth0.com/docs/libraries/auth0-single-page-app-sdk#create-the-client
 
 //
 
-const header = () => {
+const Header = () => {
   return (
     <div id="wrapper">
       <br></br>
@@ -16,4 +16,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;
