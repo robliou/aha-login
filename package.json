@@ -48,5 +48,6 @@
     "create-react-app",
     "react"
   ],
+  "proxy":"aha-login.herokuapp.com",
   "license": "MIT"
 }
