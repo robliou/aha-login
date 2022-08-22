@@ -23,9 +23,9 @@ const corsOptions = {
  */
 const jwtCheck = jwt({
   secret: getPublicKey("dev-7-8i89hb.us.auth0.com"),
-  audience: process.env.RESOURCE_SERVER,
+  audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
   algorithms: ["RS256"],
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  issuer: `https://dev-7-8i89hb.us.auth0.com/`,
 });
 /*
  * API endpoints.
