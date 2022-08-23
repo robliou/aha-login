@@ -1,4 +1,4 @@
-import path from "path";
+const path = require("path");
 const http = require("http");
 const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
