@@ -82,13 +82,13 @@ app.post("*", (req, res, next) => {
   console.log(res);
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../react-ui/build")));
+/* if (process.env.NODE_ENV === "production") { */
+app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile("index.html", { root: __dirname + "../react-ui/build" });
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile("index.html", { root: __dirname + "../react-ui/build" });
+});
+
 /* 
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../react-ui/src/components"));
