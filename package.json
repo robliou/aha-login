@@ -49,5 +49,8 @@
     "react"
   ],
   "proxy":"aha-login.herokuapp.com",
+  {
+    "type": "module"
+  }
   "license": "MIT"
 }
