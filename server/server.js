@@ -33,14 +33,7 @@ const jwtCheck = jwt({
  * API endpoints.
  */
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../react-ui/build")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../react-ui/src/components"));
-  });
-
-  /*app.get("/users", (req, res, next) => {
+/*app.get("/users", (req, res, next) => {
     res.get(path.join(__dirname, "../react-ui/src/components/profile"));
     console.log(res);
   });
@@ -49,7 +42,7 @@ if (process.env.NODE_ENV === "production") {
     res.get(path.join(__dirname, "../react-ui/src/components/profile"));
     console.log(res);
   }); */
-}
+
 app.use(cors(corsOptions));
 
 app.use("/api", jwtCheck, function (req, res, next) {
@@ -89,6 +82,18 @@ app.post("*", (req, res, next) => {
   console.log(res);
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../react-ui/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile("index.html", { root: __dirname + "../react-ui/build" });
+  });
+}
+/* 
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../react-ui/src/components"));
+  });
+ */
 /*
  * Start server.
  */
