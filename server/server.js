@@ -1,3 +1,4 @@
+import path from "path";
 const http = require("http");
 const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
@@ -7,6 +8,8 @@ require("dotenv").config();
 /*
  * Initialize express.
  */
+const __dirname = path.dirname(filename);
+
 const express = require("express");
 const app = express();
 
