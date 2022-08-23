@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../react-ui/build"));
+    res.sendFile(path.join(__dirname, "../react-ui/src/components/profile"));
   });
 
   app.get("/users", (req, res, next) => {
