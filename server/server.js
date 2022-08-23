@@ -44,6 +44,11 @@ if (process.env.NODE_ENV === "production") {
     res.get(path.join(__dirname, "../react-ui/src/components/profile"));
     console.log(res);
   });
+
+  app.get("/profile", (req, res, next) => {
+    res.get(path.join(__dirname, "../react-ui/src/components/profile"));
+    console.log(res);
+  });
 }
 app.use(cors(corsOptions));
 
