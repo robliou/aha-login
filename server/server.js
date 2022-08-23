@@ -31,8 +31,13 @@ const jwtCheck = jwt({
  * API endpoints.
  */
 
-app.use(express.static("./../public"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "react-ui", "build")));
 
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "react-ui", "build", "index.html"));
+  });
+}
 app.use(cors(corsOptions));
 
 app.use("/api", jwtCheck, function (req, res, next) {
