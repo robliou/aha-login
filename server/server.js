@@ -39,6 +39,11 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../react-ui/build"));
   });
+
+  app.get("/users", (req, res, next) => {
+    res.get(path.join(__dirname, "../react-ui/src/components/profile"));
+    console.log(res);
+  });
 }
 app.use(cors(corsOptions));
 
@@ -68,11 +73,6 @@ app.use(function (err, req, res, next) {
 });
 
 app.get("/users", (req, res, next) => {
-  app.use(
-    express.static(path.join(__dirname, "../react-ui/src/components/profile"))
-  );
-
-  res.get(path.join(__dirname, "../react-ui/src/components/profile"));
   console.log(res);
 });
 
