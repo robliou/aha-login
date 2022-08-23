@@ -31,6 +31,8 @@ const jwtCheck = jwt({
  * API endpoints.
  */
 
+app.use(express.static("./../public"));
+
 app.use(cors(corsOptions));
 
 app.use("/api", jwtCheck, function (req, res, next) {
