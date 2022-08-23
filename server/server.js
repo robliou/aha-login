@@ -36,11 +36,11 @@ const jwtCheck = jwt({
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
-  /*  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../react-ui/src/components/profile"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../react-ui/src/components"));
   });
 
-  app.get("/users", (req, res, next) => {
+  /*app.get("/users", (req, res, next) => {
     res.get(path.join(__dirname, "../react-ui/src/components/profile"));
     console.log(res);
   });
