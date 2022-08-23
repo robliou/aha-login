@@ -8,8 +8,6 @@ require("dotenv").config();
 /*
  * Initialize express.
  */
-const __dirname = path.dirname(filename);
-
 const express = require("express");
 const app = express();
 
