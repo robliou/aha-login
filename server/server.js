@@ -86,7 +86,7 @@ app.post("*", (req, res, next) => {
 app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../react-ui/src/components"));
+  res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
 });
 
 /* 
