@@ -68,9 +68,11 @@ app.use(function (err, req, res, next) {
 });
 
 app.get("/users", (req, res, next) => {
-  app.use(express.static(path.join(__dirname, "../react-ui/src/components")));
+  app.use(
+    express.static(path.join(__dirname, "../react-ui/src/components/profile"))
+  );
 
-  res.sendFile(path.join(__dirname, "../react-ui/src/components"));
+  res.sendFile(path.join(__dirname, "../react-ui/src/components/profile"));
   console.log(res);
 });
 
