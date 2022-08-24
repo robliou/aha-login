@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import {fetchingOffers, gotOffers, fetchingOffersFailed} from '../slice_reducers/offersSlice.js';
 import "./../styles/ChangeName.css";
 
@@ -10,9 +10,9 @@ var request = require("request");
 var ManagementClient = require("auth0").ManagementClient;
 
 const ChangeName = () => {
-  const [newNickname, setNickname] = useState("null");
-
   const { user } = useAuth0();
+
+  const [newNickname, setNickname] = useState();
 
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
@@ -76,13 +76,21 @@ const ChangeName = () => {
         }
         // Updated user.
       });
+
+      localStorage.setItem("newNickname", newNickname);
+
+      setTimeout(function () {
+        window.location.reload();
+      }, 3);
     });
 
-    alert(
+    /*     alert(
       'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
-    );
+    ); */
     /* redirectTo("/Profile"); */
   };
+
+  let updatedNickname = localStorage.getItem("newNickname");
 
   /*    addBuy({variables:{industry: input.value, offer_type: input.value, 
       offer_details: input.value, price: input.value, qualifications: input.value, 
@@ -90,9 +98,10 @@ const ChangeName = () => {
 
   return (
     <div id="container_Buy">
+      <br></br>
       <h2 class="Headline">Current User Name is:</h2>
       <div id="nickName">
-        <h2>{user.nickname} </h2>
+        <h2>{updatedNickname} </h2>
       </div>
       <br></br>
       <form onSubmit={handleSubmit}>
@@ -110,8 +119,14 @@ const ChangeName = () => {
               required
             />
           </li>
+          <div id="buttons">
+            <li>
+              <button type="submit">Submit</button>
+            </li>
+          </div>
         </ul>
       </form>
+      <br></br>
       <Link
         to={{
           pathname: `/profile`,

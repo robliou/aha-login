@@ -1,7 +1,14 @@
 import Auth0Lock from "auth0-lock";
+import { useEffect, useState } from "react";
+//import {fetchingOffers, gotOffers, fetchingOffersFailed} from '../slice_reducers/offersSlice.js';
+import "./../styles/ChangeName.css";
+
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import "./../styles/Profile.css";
+
+var request = require("request");
+var ManagementClient = require("auth0").ManagementClient;
 
 var clientId = "6J2cpQGzD456WzodmDHXj4Kot4y84bgI";
 var domain = "dev-7-8i89hb.us.auth0.com";
@@ -9,7 +16,9 @@ var lock = new Auth0Lock(clientId, domain);
 var accessToken = null;
 var profile = null;
 
-const ChangePassword = () => {
+const ChangeName = () => {
+  const [newNickname, setNickname] = useState();
+
   lock.on("authenticated", function (authResult) {
     lock.getUserInfo(authResult.accessToken, function (error, profileResult) {
       if (error) {
@@ -30,7 +39,7 @@ const ChangePassword = () => {
     var lock;
 
     function Auth() {
-      this.lock = new Auth0Lock("clientId", "domain");
+      this.lock = new Auth0Lock(clientId, domain);
       wm.set(privateStore, {
         appName: "example",
       });
@@ -64,14 +73,56 @@ const ChangePassword = () => {
     return Auth;
   })();
 
-  lock.show();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setNickname(newNickname);
+
+    setTimeout(function () {
+      window.location.reload();
+    }, 3);
+  };
+
+  /* redirectTo("/Profile"); */
+
+  /*    addBuy({variables:{industry: input.value, offer_type: input.value, 
+      offer_details: input.value, price: input.value, qualifications: input.value, 
+      user_id: input.value, buy_offer_id:input.value }}) */
 
   return (
-    <div>
+    <div id="container_Buy">
       <br></br>
-      <h2 class="Headline">
-        To change your password, click "Don't remember your password":
-      </h2>
+      <h2 class="Headline">Current User Name is:</h2>
+      <div id="nickName">
+        <h2>
+          <span id="nick" class="nickname">
+            {profile.nickname}
+          </span>{" "}
+        </h2>
+      </div>
+      <br></br>
+      <form onSubmit={handleSubmit}>
+        <ul class="flex-outer">
+          <li>
+            <label for="first-name">
+              What would you like to change your new username to?
+            </label>
+            <input
+              type="string"
+              id="newNickname"
+              name="newNickname"
+              value={newNickname}
+              onChange={(e) => setNickname(e.target.value)}
+              required
+            />
+          </li>
+          <div id="buttons">
+            <li>
+              <button type="submit">Submit</button>
+            </li>
+          </div>
+        </ul>
+      </form>
       <br></br>
       <Link
         to={{
@@ -85,4 +136,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default ChangeName;

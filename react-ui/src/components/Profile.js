@@ -29,6 +29,8 @@ const Profile = () => {
 
   console.log(yesterday);
 
+  let updatedNickname = localStorage.getItem("newNickname");
+
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
       callback(
@@ -119,7 +121,7 @@ const Profile = () => {
                 <td>{user.name} </td>
                 <td>{user.email} </td>
                 <td>{user.sub} </td>
-                <td>{user.nickname} </td>
+                <td>{updatedNickname} </td>
               </tr>
             </tbody>
           </Table>
