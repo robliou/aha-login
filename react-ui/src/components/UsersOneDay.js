@@ -123,14 +123,17 @@ const UsersOneDay = () => {
 
       {isAuthenticated ? (
         <div id="showSellOffers">
-          <strong>Users Statistics</strong>
+          <div id="titleHeader">
+            <strong>Users Statistics</strong>
+          </div>
+          <br></br>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th></th>
                 <th># of Users with Active Sessions Today</th>
                 <th>
-                  Average number of active session users in the last 7 days
+                  Average number of active session users in the last 7 days-
                   rolling.
                 </th>
               </tr>

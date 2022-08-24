@@ -21,6 +21,17 @@
   
   }
 
+  #nickName{
+    text-align: center;
+  }
+
+  #homeButton{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-content: space-around;  }
+
   #dropdown-menu-align-right2{
     width:22em;
   }

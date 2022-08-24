@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./../styles/ChangeName.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 var request = require("request");
 var ManagementClient = require("auth0").ManagementClient;
@@ -89,8 +91,9 @@ const ChangeName = () => {
   return (
     <div id="container_Buy">
       <h2 class="Headline">Current User Name is:</h2>
-      {/*       <h2>{user.nickname} </h2>
-       */}{" "}
+      <div id="nickName">
+        <h2>{user.nickname} </h2>
+      </div>
       <br></br>
       <form onSubmit={handleSubmit}>
         <ul class="flex-outer">
@@ -109,6 +112,14 @@ const ChangeName = () => {
           </li>
         </ul>
       </form>
+      <Link
+        to={{
+          pathname: `/profile`,
+        }}
+        id="homeButton"
+      >
+        <Button> Return to dashboard</Button>
+      </Link>{" "}
     </div>
   );
 };

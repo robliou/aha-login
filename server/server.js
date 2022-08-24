@@ -82,7 +82,7 @@ app.post("*", (req, res, next) => {
   console.log(res);
 });
 
-/* if (process.env.NODE_ENV === "production") { */
+/* prod */
 app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
 app.get("*", (req, res) => {

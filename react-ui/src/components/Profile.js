@@ -96,12 +96,15 @@ const Profile = () => {
     <div id="profileContainer">
       <div>
         <div id="userInfo">
-          <img src={user.picture} alt={user.name} id="profilePic" />
           <br></br>
-          <div id="Dashboard">
+          <div id="pageHeader">
             <strong>User Dashboard</strong>
           </div>
-          <strong>My Profile Info</strong>
+          <br></br>
+          <br></br>
+          <div id="titleHeader">
+            <strong>My Profile Info</strong>
+          </div>
           <Table striped bordered hover responsive variant="dark">
             <thead>
               <tr>
@@ -116,7 +119,7 @@ const Profile = () => {
                 <td>{user.name} </td>
                 <td>{user.email} </td>
                 <td>{user.sub} </td>
-                <td>{user.sub} </td>
+                <td>{user.nickname} </td>
               </tr>
             </tbody>
           </Table>
@@ -124,8 +127,48 @@ const Profile = () => {
       </div>
 
       {usersObject ? (
-        <div id="showSellOffers">
-          <strong>Users Signed In</strong>
+        <div id="userStatistics">
+          <div id="titleHeader">
+            <strong>Users Statistics</strong>
+          </div>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr>
+                <th># of Users Signed Up</th>
+                <th># of Users with Active Sessions Today</th>
+                <th>
+                  Average number of active session users in the last 7 days
+                  rolling.
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{usersObject.length} </td>
+                <td>
+                  <Link
+                    to={{
+                      pathname: `/usersOneDay`,
+                    }}
+                  >
+                    <Button id="usersOneDay"> More stats</Button>
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    to={{
+                      pathname: `/usersOneDay`,
+                    }}
+                  >
+                    <Button id="usersOneDay"> More stats</Button>
+                  </Link>{" "}
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          <div id="titleHeader">
+            <strong>Users Signed In</strong>
+          </div>
           <Table striped bordered hover responsive>
             <thead>
               <tr>
@@ -168,42 +211,23 @@ const Profile = () => {
               </tr>
             </tbody>
           </Table>
-
-          <strong>Users Statistics</strong>
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th># of Users Signed Up</th>
-                <th># of Users with Active Sessions Today</th>
-                <th>
-                  Average number of active session users in the last 7 days
-                  rolling.
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{usersObject.length} </td>
-                <Link
-                  to={{
-                    pathname: `/usersOneDay`,
-                  }}
-                >
-                  <Button id="usersOneDay"> More stats</Button>
-                </Link>
-                <td>
-                  <Link
-                    to={{
-                      pathname: `/usersOneDay`,
-                    }}
-                  >
-                    <Button id="usersOneDay"> More stats</Button>
-                  </Link>{" "}
-                </td>
-                <td> </td>
-              </tr>
-            </tbody>
-          </Table>
+          <div id="buttons">
+            <Link
+              to={{
+                pathname: `/changeName`,
+              }}
+            >
+              <Button id="changeName"> Change nickname</Button>
+            </Link>
+            {"                "}
+            <Link
+              to={{
+                pathname: `/changePassword`,
+              }}
+            >
+              <Button id="changePassword"> Change password</Button>
+            </Link>{" "}
+          </div>
         </div>
       ) : (
         ""

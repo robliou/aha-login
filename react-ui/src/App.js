@@ -13,6 +13,7 @@ import Logout from "./components/Logout";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Profile from "./components/Profile";
 import UsersOneDay from "./components/UsersOneDay";
+import ChangePassword from "./components/ChangePassword";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/home" element={<ProtectedRoute component={Profile} />} />
         <Route path="/login/*" element={<Login />} />
         <Route path="/logout/*" element={<Logout />} />
+        <Route path="/changepassword/*" element={<ChangePassword />} />
 
         <Route
           path="/profile/"
