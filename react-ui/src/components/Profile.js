@@ -61,8 +61,8 @@ const Profile = () => {
       return;
     }
 
-    console.log("Getting User Statistics");
-
+    /*     console.log("Getting User Statistics");
+     */
     var management = new ManagementClient({
       token: accessToken,
 

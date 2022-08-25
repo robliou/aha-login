@@ -24,11 +24,7 @@ const UsersOneDay = () => {
 
   let yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
 
-  console.log("This is yesterdayJs" + yesterday);
-
   let oneWeekAgo = dayjs().subtract(7, "day").format("YYYY-MM-DD");
-
-  console.log(yesterday);
 
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
@@ -88,7 +84,6 @@ const UsersOneDay = () => {
     management.getUsers(paramsOneDay, function (err, users) {
       console.log(users.length);
       setUsersOneDay(users.length);
-      console.log("Users One Day:" + usersOneDay);
     });
 
     var paramsOneWeek = {
@@ -102,7 +97,6 @@ const UsersOneDay = () => {
     management.getUsers(paramsOneWeek, function (err, users) {
       console.log(users.length);
       setUsersWeekAgo(users.length);
-      console.log("Users One Week Ago:" + usersWeekAgo);
     });
   });
 
