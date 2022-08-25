@@ -3,14 +3,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./../styles/Profile.css";
 import { Table } from "react-bootstrap";
 
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome
 
 const dayjs = require("dayjs");
 
-require("dotenv").config({ path: "/.env" });
+require("dotenv").config();
 
 let ManagementClient = require("auth0").ManagementClient;
 

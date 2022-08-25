@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-//import {fetchingOffers, gotOffers, fetchingOffersFailed} from '../slice_reducers/offersSlice.js';
+import { useState } from "react";
 import "./../styles/ChangeName.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -8,6 +7,7 @@ import Button from "react-bootstrap/Button";
 
 var request = require("request");
 var ManagementClient = require("auth0").ManagementClient;
+require("dotenv").config();
 
 const ChangeName = () => {
   const { user } = useAuth0();
@@ -32,9 +32,8 @@ const ChangeName = () => {
       body: {
         audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
-        client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
-        client_secret:
-          "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
+        client_id: `${process.env.clientId}`,
+        client_secret: `${process.env.client_secret}`,
       },
       json: true,
     };
@@ -61,13 +60,11 @@ const ChangeName = () => {
       var management = new ManagementClient({
         token: accessToken,
 
-        domain: "dev-7-8i89hb.us.auth0.com",
+        domain: `${process.env.domain}`,
       });
 
       var params = { id: user.user_id };
-      /*      var metadata = {
-        nickname: `'${newNickname}'`,
-      }; */
+
       var data = { nickname: `'${newNickname}` };
 
       management.updateUser(params, data, function (err, user) {
@@ -91,10 +88,6 @@ const ChangeName = () => {
   };
 
   let updatedNickname = localStorage.getItem("newNickname");
-
-  /*    addBuy({variables:{industry: input.value, offer_type: input.value, 
-      offer_details: input.value, price: input.value, qualifications: input.value, 
-      user_id: input.value, buy_offer_id:input.value }}) */
 
   return (
     <div id="container_Buy">

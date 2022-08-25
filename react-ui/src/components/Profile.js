@@ -10,7 +10,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //It also fixed my .css stuff in Chrome?!?!?!?
 const dayjs = require("dayjs");
 
-require("dotenv").config({ path: "/.env" });
+require("dotenv").config();
+console.log("This is process.env", process.env);
 
 var ManagementClient = require("auth0").ManagementClient;
 
@@ -46,8 +47,8 @@ const Profile = () => {
       body: {
         audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
-        client_id: `${process.env.clientId}`,
-        client_secret: `${process.env.client_secret}`,
+        client_id: process.env.clientId,
+        client_secret: process.env.client_secret,
       },
       json: true,
     };
@@ -236,10 +237,3 @@ const Profile = () => {
   );
 };
 export default Profile;
-
-/* ApolloTableQL
-  query={UsersQuery}
-  columns={['first_name', 'last_name','user_id', 'created_at' ]}
-   /> */
-
-//Having weird issue when trying to fetch from more than one database. For now, just fetch from one database until further notice...

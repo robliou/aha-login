@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./../styles/Profile.css";
 
-var clientId = "6J2cpQGzD456WzodmDHXj4Kot4y84bgI";
-var domain = "dev-7-8i89hb.us.auth0.com";
-var lock = new Auth0Lock(clientId, domain);
+require("dotenv").config();
+
+var lock = new Auth0Lock(`${process.env.clientId}`, `${process.env.domain}`);
 var accessToken = null;
 var profile = null;
 

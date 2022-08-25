@@ -2,8 +2,7 @@ const path = require("path");
 const http = require("http");
 const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
-/* const logger = require("./lib/logger");
- */ const getPublicKey = require("./lib/getPublicKey");
+const getPublicKey = require("./lib/getPublicKey");
 require("dotenv").config();
 /*
  * Initialize express.
@@ -24,7 +23,6 @@ const corsOptions = {
  */
 const jwtCheck = jwt({
   secret: getPublicKey("dev-7-8i89hb.us.auth0.com"),
-  audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
   audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
   algorithms: ["RS256"],
   issuer: `https://dev-7-8i89hb.us.auth0.com/`,
