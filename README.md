@@ -6,9 +6,9 @@ It is composed of a React front-end and a Node.js backend. Calls to Auth0 are ma
 
 To run this file locally:
 
-1) clone this app
-2) setup an M2M app account with Auth0
-3) set up an .env file in both the /react-ui and /server folders.
-3a) add your environment variables as obtained from your M2M app in Auth0.
+1) Clone this app
+2) Setup an M2M app account with Auth0
+3) Set up an .env file in both the /react-ui and /server folders.
+3a) Add your environment variables as obtained from your M2M app in Auth0.
 4) Change the redirect URL in /react-ui/src/index.js to "http://localhost:3000"
 5) Use npm run in both the /react-ui and /server folders
