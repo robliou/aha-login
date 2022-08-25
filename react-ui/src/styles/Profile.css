@@ -8,18 +8,18 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
-#userInfo{
+.userInfo{
     margin-left: 50px;
     margin-right: 50px;
     grid-row: 1 / span 1;
     grid-column: 1 /span 1;
 }
 
-#titleHeader{
+.titleHeader{
     text-align: center;
 }
 
-#pageHeader{
+.pageHeader{
     text-align: center;
     font-size: large;
 }
@@ -41,7 +41,7 @@
     align-content: space-around;
 }
 
-#buttons{
+.buttons{
     text-align: center;
     display: flex;
     justify-content: space-evenly;

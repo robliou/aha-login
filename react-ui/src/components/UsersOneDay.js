@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import "./../styles/Profile.css";
+import "./../styles/profile.css";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
@@ -104,12 +106,10 @@ const UsersOneDay = () => {
     <div id="profileContainer">
       <div>
         <div id="userInfo">
-          <img src={user.picture} alt={user.name} id="profilePic" />
           <br></br>
+          <img src={user.picture} alt={user.name} id="profilePic" />
         </div>
       </div>
-
-      <br></br>
 
       {isAuthenticated ? (
         <div id="showSellOffers">
@@ -136,6 +136,15 @@ const UsersOneDay = () => {
               </tr>
             </tbody>
           </Table>
+          <br></br>
+          <Link
+            to={{
+              pathname: `/profile`,
+            }}
+            id="homeButton"
+          >
+            <Button> Return to dashboard</Button>
+          </Link>{" "}
         </div>
       ) : (
         ""

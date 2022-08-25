@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./../styles/ChangeName.css";
+import "./../styles/changeName.css";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
@@ -80,19 +80,14 @@ const ChangeName = () => {
         window.location.reload();
       }, 3);
     });
-
-    /*     alert(
-      'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
-    ); */
-    /* redirectTo("/Profile"); */
   };
 
   let updatedNickname = localStorage.getItem("newNickname");
 
   return (
-    <div id="container_Buy">
+    <div class="container_Buy">
       <br></br>
-      <h2 class="Headline">Current User Name is:</h2>
+      <h2 class="Headline">Current nickname is:</h2>
       <div id="nickName">
         <h2>{updatedNickname} </h2>
       </div>
@@ -101,7 +96,7 @@ const ChangeName = () => {
         <ul class="flex-outer">
           <li>
             <label for="first-name">
-              What would you like to change your new username to?
+              What would you like to change your new nickname to?
             </label>
             <input
               type="string"
@@ -112,7 +107,7 @@ const ChangeName = () => {
               required
             />
           </li>
-          <div id="buttons">
+          <div class="buttons">
             <li>
               <button type="submit">Submit</button>
             </li>
@@ -124,7 +119,7 @@ const ChangeName = () => {
         to={{
           pathname: `/profile`,
         }}
-        id="homeButton"
+        class="homeButton"
       >
         <Button> Return to dashboard</Button>
       </Link>{" "}

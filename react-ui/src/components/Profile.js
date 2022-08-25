@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import "./../styles/Profile.css";
+import "./../styles/profile.css";
 import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -8,7 +8,6 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome?!?!?!?
-const dayjs = require("dayjs");
 
 require("dotenv").config();
 
@@ -86,14 +85,14 @@ const Profile = () => {
   return isAuthenticated ? (
     <div id="profileContainer">
       <div>
-        <div id="userInfo">
+        <div class="userInfo">
           <br></br>
-          <div id="pageHeader">
+          <div class="pageHeader">
             <strong>User Dashboard</strong>
           </div>
           <br></br>
           <br></br>
-          <div id="titleHeader">
+          <div class="titleHeader">
             <strong>My Profile Info</strong>
           </div>
           <Table striped bordered hover responsive variant="dark">
@@ -119,7 +118,7 @@ const Profile = () => {
 
       {usersObject ? (
         <div id="userStatistics">
-          <div id="titleHeader">
+          <div class="titleHeader">
             <strong>Users Statistics</strong>
           </div>
           <Table striped bordered hover responsive>
@@ -157,7 +156,7 @@ const Profile = () => {
               </tr>
             </tbody>
           </Table>
-          <div id="titleHeader">
+          <div class="titleHeader">
             <strong>Users Signed In</strong>
           </div>
           <Table striped bordered hover responsive>
@@ -202,7 +201,7 @@ const Profile = () => {
               </tr>
             </tbody>
           </Table>
-          <div id="buttons">
+          <div class="buttons">
             <Link
               to={{
                 pathname: `/changeName`,

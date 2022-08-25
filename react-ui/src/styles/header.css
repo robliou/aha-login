@@ -9,14 +9,6 @@
   justify-content: center;
 }
 
-#header {
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2fr);
-  display:  grid;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--lightBackground)
-}
 
 .authNav{
   grid-template-columns: 2 span 1;

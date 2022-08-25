@@ -1,16 +1,17 @@
 import Auth0Lock from "auth0-lock";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import "./../styles/Profile.css";
+import "./../styles/profile.css";
 
 require("dotenv").config();
 
-var lock = new Auth0Lock(
-  process.env.REACT_APP_CLIENTID,
-  process.env.REACT_APP_CLIENT_SECRET
-);
 var accessToken = null;
 var profile = null;
+
+var lock = new Auth0Lock(
+  process.env.REACT_APP_CLIENTID,
+  process.env.REACT_APP_DOMAIN
+);
 
 const ChangePassword = () => {
   lock.on("authenticated", function (authResult) {

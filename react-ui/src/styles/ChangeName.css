@@ -1,7 +1,7 @@
 
   .flex-container{
     display: flex;
-  flex-direction: row;
+    flex-direction: row;
      min-width: 85%;
     max-width: 85%; 
     margin-left: 15px;
@@ -13,7 +13,7 @@
 
   }
 
-  #buttons{
+  .buttons{
     text-align: center;
     display: flex;
     justify-content: space-evenly;
@@ -24,10 +24,9 @@
     text-align: center;
   }
 
-  #homeButton{
+  .homeButton{
     display: flex;
     justify-content: center;
-    /* flex-direction: column; */
     flex-wrap: wrap;
     align-content: space-around;  }
 
@@ -66,7 +65,7 @@
     color: 'black';
   }
 
-    #container_Buy {
+    .container_Buy {
     width: 80%;
     max-width: 1000px;
     margin: 0 auto;
@@ -183,10 +182,6 @@
     flex: 1 0 220px;
   }
 
-  #submitMe{
-    margin-left: 110px;
-    margin-top: 15px;
-  }
 
   #container_Buy {
     width: 90%;

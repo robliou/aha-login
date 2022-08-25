@@ -1,4 +1,4 @@
-import "./../styles/AuthNav.css";
+import "./../styles/authNav.css";
 
 import React from "react";
 import AuthenticationButton from "./authentication-button";
