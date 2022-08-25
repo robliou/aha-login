@@ -5,7 +5,10 @@ import "./../styles/Profile.css";
 
 require("dotenv").config();
 
-var lock = new Auth0Lock(`${process.env.clientId}`, `${process.env.domain}`);
+var lock = new Auth0Lock(
+  process.env.REACT_APP_CLIENTID,
+  process.env.REACT_APP_CLIENT_SECRET
+);
 var accessToken = null;
 var profile = null;
 

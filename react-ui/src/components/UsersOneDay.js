@@ -48,8 +48,8 @@ const UsersOneDay = () => {
       body: {
         audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
-        client_id: `${process.env.clientId}`,
-        client_secret: `${process.env.client_secret}`,
+        client_id: process.env.REACT_APP_CLIENTID,
+        client_secret: process.env.REACT_APP_CLIENT_SECRET,
       },
       json: true,
     };

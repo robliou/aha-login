@@ -14,6 +14,8 @@ import Profile from "./components/Profile";
 import UsersOneDay from "./components/UsersOneDay";
 import ChangePassword from "./components/ChangePassword";
 
+require("dotenv").config();
+
 function App() {
   return (
     <Router>
