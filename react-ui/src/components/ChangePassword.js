@@ -6,7 +6,7 @@ import "./../styles/Profile.css";
 require("dotenv").config();
 
 var lock = new Auth0Lock(
-  process.env.DOMAINCLIENTID,
+  process.env.REACT_APP_CLIENTID,
   process.env.REACT_APP_CLIENT_SECRET
 );
 var accessToken = null;
@@ -27,7 +27,7 @@ const ChangePassword = () => {
     });
   });
 
-  var Auth = (function () {
+  /*  var Auth = (function () {
     var wm = new WeakMap();
     var privateStore = {};
     var lock;
@@ -68,7 +68,7 @@ const ChangePassword = () => {
       });
     };
     return Auth;
-  })();
+  })(); */
 
   lock.show();
 
