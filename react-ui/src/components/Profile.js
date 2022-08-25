@@ -84,42 +84,43 @@ const Profile = () => {
 
   return isAuthenticated ? (
     <div id="profileContainer">
-      <div>
-        <div class="userInfo">
-          <br></br>
-          <div class="pageHeader">
-            <strong>User Dashboard</strong>
-          </div>
-          <br></br>
-          <br></br>
-          <div class="titleHeader">
-            <strong>My Profile Info</strong>
-          </div>
-          <Table striped bordered hover responsive variant="dark">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>User ID</th>
-                <th>Nickname</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{user.name} </td>
-                <td>{user.email} </td>
-                <td>{user.sub} </td>
-                <td>{updatedNickname} </td>
-              </tr>
-            </tbody>
-          </Table>
+      <div class="userInfo">
+        <br></br>
+        <div class="pageHeader">
+          <h2>User Dashboard</h2>
         </div>
+        <br></br>
+        <br></br>
+        <div class="titleHeader">
+          <h4>My Profile Info</h4>
+        </div>
+        <Table striped bordered hover responsive variant="dark">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>User ID</th>
+              <th>Nickname</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{user.name} </td>
+              <td>{user.email} </td>
+              <td>{user.sub} </td>
+              <td>{updatedNickname} </td>
+            </tr>
+          </tbody>
+        </Table>
       </div>
+      <br></br>
+      <br></br>
 
       {usersObject ? (
         <div id="userStatistics">
           <div class="titleHeader">
-            <strong>Users Statistics</strong>
+            <br></br>
+            <h4>Users Statistics</h4>
           </div>
           <Table striped bordered hover responsive>
             <thead>
@@ -156,8 +157,9 @@ const Profile = () => {
               </tr>
             </tbody>
           </Table>
+          <br></br>
           <div class="titleHeader">
-            <strong>Users Signed In</strong>
+            <h4> Full User Sign-in Table </h4>
           </div>
           <Table striped bordered hover responsive>
             <thead>
@@ -168,39 +170,19 @@ const Profile = () => {
                 <th>Timestamp of last user session</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>{usersObject[0].name} </td>
-                <td>{usersObject[0].created_at} </td>
-                <td>{usersObject[0].logins_count} </td>
-                <td>{usersObject[0].last_login} </td>
-              </tr>
-              <tr>
-                <td>{usersObject[1].name} </td>
-                <td>{usersObject[1].created_at} </td>
-                <td>{usersObject[1].logins_count} </td>
-                <td>{usersObject[1].last_login} </td>
-              </tr>
-              <tr>
-                <td>{usersObject[2].name} </td>
-                <td>{usersObject[2].created_at} </td>
-                <td>{usersObject[2].logins_count} </td>
-                <td>{usersObject[2].last_login} </td>
-              </tr>
-              <tr>
-                <td>{usersObject[3].name} </td>
-                <td>{usersObject[3].created_at} </td>
-                <td>{usersObject[3].logins_count} </td>
-                <td>{usersObject[3].last_login} </td>
-              </tr>
-              <tr>
-                <td>{usersObject[4].name} </td>
-                <td>{usersObject[4].created_at} </td>
-                <td>{usersObject[4].logins_count} </td>
-                <td>{usersObject[4].last_login} </td>
-              </tr>
-            </tbody>
+            {usersObject.map((data, idx) => (
+              <tbody>
+                <tr>
+                  <td>{data.name}</td>
+                  <td>{data.created_at}</td>
+                  <td>{data.logins_count}</td>
+                  <td>{data.last_login}</td>
+                </tr>
+              </tbody>
+            ))}
           </Table>
+          <br></br>
+
           <div class="buttons">
             <Link
               to={{
@@ -218,6 +200,8 @@ const Profile = () => {
               <Button id="changePassword"> Change password</Button>
             </Link>
           </div>
+          <br></br>
+          <br></br>
         </div>
       ) : (
         ""

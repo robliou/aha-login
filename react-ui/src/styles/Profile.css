@@ -1,11 +1,8 @@
 #profileContainer{
-    display: grid;
-    align-items: center;
-    align-content: center;
-    justify-content: stretch;
-    justify-items: center;
-    grid-template-columns: 1fr ;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 .userInfo{

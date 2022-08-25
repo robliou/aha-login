@@ -105,16 +105,16 @@ const UsersOneDay = () => {
   return isAuthenticated ? (
     <div id="profileContainer">
       <div>
-        <div id="userInfo">
+        <div class="userInfo">
           <br></br>
-          <img src={user.picture} alt={user.name} id="profilePic" />
         </div>
       </div>
 
       {isAuthenticated ? (
-        <div id="showSellOffers">
-          <div id="titleHeader">
-            <strong>Users Statistics</strong>
+        <div class="showSellOffers">
+          <div class="titleHeader">
+            <br></br>
+            <h2>Users Statistics (Additional) </h2>
           </div>
           <br></br>
           <Table striped bordered hover responsive>
