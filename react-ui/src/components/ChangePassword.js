@@ -6,7 +6,7 @@ import "./../styles/Profile.css";
 require("dotenv").config();
 
 var lock = new Auth0Lock(
-  process.env.REACT_APP_CLIENTID,
+  process.env.DOMAINCLIENTID,
   process.env.REACT_APP_CLIENT_SECRET
 );
 var accessToken = null;
@@ -33,7 +33,10 @@ const ChangePassword = () => {
     var lock;
 
     function Auth() {
-      this.lock = new Auth0Lock("clientId", "domain");
+      this.lock = new Auth0Lock(
+        process.env.REACT_APP_CLIENTID,
+        process.env.DOMAIN
+      );
       wm.set(privateStore, {
         appName: "example",
       });
