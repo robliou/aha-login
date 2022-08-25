@@ -11,7 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const dayjs = require("dayjs");
 
 require("dotenv").config();
-console.log("This is process.env", process.env);
 
 var ManagementClient = require("auth0").ManagementClient;
 
@@ -20,12 +19,6 @@ const Profile = () => {
   const [usersObject, setUsersObject] = useState();
 
   var request = require("request");
-
-  let yesterday = dayjs().subtract(1, "day").format("YYYY-MM-DD");
-
-  console.log("This is yesterdayJs" + yesterday);
-
-  console.log(yesterday);
 
   let updatedNickname = localStorage.getItem("newNickname");
 
@@ -87,7 +80,6 @@ const Profile = () => {
         console.log(err);
       }
       setUsersObject(users);
-      console.log(users);
     });
   });
 
