@@ -1,5 +1,5 @@
 import "./../styles/header.css";
-import AuthNav from "./auth-nav";
+import AuthNav from "./Auth-nav";
 
 import React from "react";
 

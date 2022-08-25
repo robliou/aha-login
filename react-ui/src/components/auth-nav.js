@@ -1,7 +1,7 @@
 import "./../styles/authNav.css";
 
 import React from "react";
-import AuthenticationButton from "./authentication-button";
+import AuthenticationButton from "./Authentication-button";
 
 const AuthNav = () => (
   <div className="  ">
