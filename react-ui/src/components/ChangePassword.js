@@ -1,7 +1,7 @@
 import Auth0Lock from "auth0-lock";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import "./../styles/profile.css";
+import "./../styles/profileStyle.css";
 
 require("dotenv").config();
 
