@@ -1,8 +1,8 @@
 # aha-login
-This is the README.md for aha-login, a full-stack app created by Robert Liou as part of the full-stack engineer examination as required by Aha.
-It is currently deployed at https://aha-login.herokuapp.com
+This is the README.md for aha-login, a full-stack app created by Robert Liou as part of the full-stack engineer examination as required by Aha. Requirements for building are listed here: https://docs.google.com/document/d/15tA1qlVOg14cmpX0DbIPPnUQa9GYlSXcb9haRCojVEU/edit.
+Aha-login is currently deployed at https://aha-login.herokuapp.com
 
-It is composed of a React front-end and a Node.js backend. Calls to Auth0 are made from the Node back-end using a specially obtained M2M (Machine-to-Machine) token. Both front- and back-end must be deployed in order for this app to run correctly. The authorization is handled mainly by Auth0.
+It is composed of a React front-end and a Node.js backend. Calls to Auth0 are made from the Node back-end and feature the acquisition of a specially obtained M2M (Machine-to-Machine) token. Both front- and back-end must be deployed in order for this app to run correctly. The authorization is handled mainly by Auth0, while the origin of all calls comes from the specially-built React front-end.
 
 To run this file locally:
 
