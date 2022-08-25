@@ -218,14 +218,14 @@ const Profile = () => {
             >
               <Button id="changeName"> Change nickname</Button>
             </Link>
-            {"                "}
+            {""}
             <Link
               to={{
                 pathname: `/changePassword`,
               }}
             >
               <Button id="changePassword"> Change password</Button>
-            </Link>{" "}
+            </Link>
           </div>
         </div>
       ) : (

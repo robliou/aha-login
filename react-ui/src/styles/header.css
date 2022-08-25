@@ -18,15 +18,6 @@
   background-color: var(--lightBackground)
 }
 
-#metamask{
-  grid-template-columns: 1 span 1;
-  grid-template-rows: 1 span 1;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  font-size: 115%;
-  /*   padding-left: 50%;
- */}
-
 .authNav{
   grid-template-columns: 2 span 1;
   grid-template-rows: 1 span 1;
@@ -46,10 +37,7 @@
 h2 {
     font-size: 115%;
   } 
-  #metamask {
-  padding-right: 0;
-  height: 25vmin;
-  }
+
 }
 
 
@@ -70,12 +58,6 @@ h2 {
 h2 {
     font-size: 105%;
   } 
-  #metamask {
-  height: 25vmin;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  padding-right: 5em;
-  }
 
   .authNav{
  
@@ -103,9 +85,6 @@ h2 {
   
   }
 
-  #metamask {
-    height: 3rem;
-    }
 
     .authNav{
  
