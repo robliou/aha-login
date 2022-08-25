@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/index.css";
 
 import Header from "./components/Header";
-import Home from "./components/Home";
 import Root from "./components/Root";
 import ChangeName from "./components/ChangeName";
 
@@ -27,7 +26,6 @@ function App() {
         <Route path="/login/*" element={<Login />} />
         <Route path="/logout/*" element={<Logout />} />
         <Route path="/changepassword/*" element={<ChangePassword />} />
-
         <Route
           path="/profile/"
           element={<ProtectedRoute component={Profile} />}

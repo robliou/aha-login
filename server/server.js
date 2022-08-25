@@ -29,19 +29,6 @@ const jwtCheck = jwt({
   algorithms: ["RS256"],
   issuer: `https://dev-7-8i89hb.us.auth0.com/`,
 });
-/*
- * API endpoints.
- */
-
-/*app.get("/users", (req, res, next) => {
-    res.get(path.join(__dirname, "../react-ui/src/components/profile"));
-    console.log(res);
-  });
-
-  app.get("/profile", (req, res, next) => {
-    res.get(path.join(__dirname, "../react-ui/src/components/profile"));
-    console.log(res);
-  }); */
 
 app.use(cors(corsOptions));
 
@@ -89,11 +76,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
 });
 
-/* 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../react-ui/src/components"));
-  });
- */
 /*
  * Start server.
  */

@@ -12,11 +12,8 @@ const dayjs = require("dayjs");
 
 require("dotenv").config({ path: "/.env" });
 
-/* var env = require("./lib/env");
- */ var ManagementClient = require("auth0").ManagementClient;
+var ManagementClient = require("auth0").ManagementClient;
 
-/* import { response } from "express";
- */
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
@@ -49,9 +46,8 @@ const Profile = () => {
       body: {
         audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
-        client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
-        client_secret:
-          "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
+        client_id: `${process.env.clientId}`,
+        client_secret: `${process.env.client_secret}`,
       },
       json: true,
     };
@@ -76,7 +72,7 @@ const Profile = () => {
     var management = new ManagementClient({
       token: accessToken,
 
-      domain: "dev-7-8i89hb.us.auth0.com",
+      domain: `${process.env.domain}`,
     });
 
     var params = {

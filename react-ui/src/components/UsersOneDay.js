@@ -6,16 +6,14 @@ import { Table } from "react-bootstrap";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
-//It also fixed my .css stuff in Chrome?!?!?!?
+//It also fixed my .css stuff in Chrome
+
 const dayjs = require("dayjs");
 
 require("dotenv").config({ path: "/.env" });
 
-/* var env = require("./lib/env");
- */ var ManagementClient = require("auth0").ManagementClient;
+let ManagementClient = require("auth0").ManagementClient;
 
-/* import { response } from "express";
- */
 const UsersOneDay = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersOneDay, setUsersOneDay] = useState(null);
@@ -51,9 +49,8 @@ const UsersOneDay = () => {
       body: {
         audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
         grant_type: "client_credentials",
-        client_id: "6J2cpQGzD456WzodmDHXj4Kot4y84bgI",
-        client_secret:
-          "fVXUOHUTvH5rk_ydPwIgOb1Vf2bBr24266oc6ZkF5jFolTP0PlzhiEtxGYXUx26F",
+        client_id: `${process.env.clientId}`,
+        client_secret: `${process.env.client_secret}`,
       },
       json: true,
     };
@@ -156,10 +153,3 @@ const UsersOneDay = () => {
   );
 };
 export default UsersOneDay;
-
-/* ApolloTableQL
-  query={UsersQuery}
-  columns={['first_name', 'last_name','user_id', 'created_at' ]}
-   /> */
-
-//Having weird issue when trying to fetch from more than one database. For now, just fetch from one database until further notice...
