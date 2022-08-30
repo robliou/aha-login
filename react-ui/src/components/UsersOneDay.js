@@ -14,6 +14,10 @@ const dayjs = require("dayjs");
 
 require("dotenv").config();
 
+/* -- Note that for free accounts, Auth0 sets a limit on the number of calls that can be made per minute.
+                   Hence, all 3 of the user stats information could not be retrieved and displayed at once.
+                   Moved the remaining two to a table hosted in this component*/
+
 let ManagementClient = require("auth0").ManagementClient;
 
 const UsersOneDay = () => {
@@ -156,7 +160,3 @@ const UsersOneDay = () => {
   );
 };
 export default UsersOneDay;
-
-/* -- Note that for free accounts, Auth0 sets a limit on the number of calls that can be made per minute.
-                   Hence, all 3 of the user stats information could not be retrieved at once, and moved
-                  the remaining two to this component*/

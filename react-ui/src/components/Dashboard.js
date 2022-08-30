@@ -14,6 +14,9 @@ require("dotenv").config();
 var ManagementClient = require("auth0").ManagementClient;
 //ManagementClient utilizes the node-auth package to make calls to the Management API
 
+/* User profile and Dashboard
+Information obtained via calls to the Auth0 Management API via M2M token*/
+
 const Dashboard = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
@@ -216,5 +219,3 @@ const Dashboard = () => {
   );
 };
 export default Dashboard;
-
-/* User profile and Dashboard*/

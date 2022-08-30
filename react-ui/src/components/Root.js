@@ -10,6 +10,8 @@ const breakpoints = [480, 768, 992, 1200];
 export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
 //From the Odyssey lift-off-pt3 doc
 
+/* Root is the home page for this App */
+
 const Root = () => {
   const { isAuthenticated } = useAuth0();
 
@@ -42,5 +44,3 @@ const Root = () => {
 };
 
 export default Root;
-
-/* Root is essentially the home page for this app */

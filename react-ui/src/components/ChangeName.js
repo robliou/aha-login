@@ -9,6 +9,8 @@ var request = require("request");
 var ManagementClient = require("auth0").ManagementClient;
 require("dotenv").config();
 
+/* Change nickname using Management API/ M2M token obtained from Auth0 */
+
 const ChangeName = () => {
   const { user } = useAuth0();
 
@@ -136,5 +138,3 @@ const ChangeName = () => {
 };
 
 export default ChangeName;
-
-/* Change nickname*/

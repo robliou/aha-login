@@ -13,6 +13,8 @@ var lock = new Auth0Lock(
   process.env.REACT_APP_DOMAIN
 );
 
+/* Component to change password using Auth0 Lock*/
+
 const ChangePassword = () => {
   lock.on("authenticated", function (authResult) {
     lock.getUserInfo(authResult.accessToken, function (error, profileResult) {
@@ -51,5 +53,3 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
-
-/* Component to change password*/
