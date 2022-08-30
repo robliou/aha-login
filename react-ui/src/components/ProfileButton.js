@@ -1,17 +1,19 @@
-import Profile from "./Profile";
+import Dashboard from "./Dashboard";
 import { Link } from "react-router-dom";
 
 const ProfileButton = () => {
   return (
     <Link
       to={{
-        pathname: `/Profile`,
+        pathname: `/Dashboard`,
       }}
     >
       {" "}
-      <button onClick={() => Profile()}> Dashboard</button>
+      <button onClick={() => Dashboard()}> Dashboard</button>
     </Link>
   );
 };
 
 export default ProfileButton;
+
+/* Dashboard button component */

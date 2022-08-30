@@ -49,17 +49,13 @@ const ChangeName = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getAccessToken(async function (err, accessToken) {
+    getAccessToken(function (err, accessToken) {
       if (err) {
         console.log("Error getting a token:", err.message || err);
         return;
       }
 
-      localStorage.setItem("accessToken", accessToken);
-
-      localStorage.getItem("accessToken");
-
-      await console.log(accessToken);
+      console.log("Posting nickname");
 
       var management = new ManagementClient({
         token: accessToken,
@@ -67,37 +63,33 @@ const ChangeName = () => {
         domain: process.env.REACT_APP_DOMAIN,
       });
 
-      var params = await { id: user.sub };
+      var params = { id: user.user_id };
 
-      var metadata = {
-        nickname: { newNickname },
-        address: "123th Node.js Street",
-      };
+      var data = { nickname: `'${newNickname}` };
 
-      setNickname(newNickname);
-
-      console.log(params);
-
-      management.updateUserMetadata(params, metadata, function (err, user) {
+      management.updateUser(params, data, function (err, user) {
         if (err) {
           console.log(err);
         }
         // Updated user.
-        console.log("user name udpated", `${newNickname}`);
       });
 
-      /* setTimeout(function () {
+      localStorage.setItem("newNickname", newNickname);
+
+      setTimeout(function () {
         window.location.reload();
-      }, 10); */
+      }, 3);
     });
   };
+
+  let updatedNickname = localStorage.getItem("newNickname");
 
   return (
     <div class="container_Buy">
       <br></br>
       <h2 class="headline">Current nickname is:</h2>
       <div id="nickName">
-        <h2>{user.sub} </h2>
+        <h2>{updatedNickname} </h2>
       </div>
       <br></br>
       <form onSubmit={handleSubmit}>
@@ -136,5 +128,3 @@ const ChangeName = () => {
 };
 
 export default ChangeName;
-
-/* Change nickname*/

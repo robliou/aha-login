@@ -11,3 +11,5 @@ export const Login: FC =  () => {
     loginWithPopup()}> Log in </button>
     )};
 
+/* Login logic which triggers on clicking of Login/Lout button, as based on Auth0 suggestions*/
+

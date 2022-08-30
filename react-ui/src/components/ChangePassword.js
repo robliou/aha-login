@@ -29,17 +29,18 @@ const ChangePassword = () => {
   });
 
   lock.show();
+  /* lock is the Auth0 authorization widget */
 
   return (
     <div>
       <br></br>
-      <h2 class="Headline">
+      <h2 class="headline">
         To change your password, click "Don't remember your password":
       </h2>
       <br></br>
       <Link
         to={{
-          pathname: `/profile`,
+          pathname: `/dashboard`,
         }}
         id="homeButton"
       >
@@ -50,3 +51,5 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
+
+/* Component to change password*/

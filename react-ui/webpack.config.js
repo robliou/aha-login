@@ -18,3 +18,6 @@ module.exports = {
     }),
   ],
 };
+
+/*This file is necessary in order to configure certain issues with the webpack configuration
+Notably, the plugin above is required in order for the auth0-lock called in the ChangePassword.js module to perform correctly*/

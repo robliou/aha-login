@@ -10,3 +10,6 @@ export const Logout: FC =  () => {
     <button className="auth-button" onClick={() => 
     logout()}> Log out </button>
     )};
+
+    /* Logout logic which triggers on clicking of Login/Lout button, as based on Auth0 suggestions*/
+

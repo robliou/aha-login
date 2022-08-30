@@ -27,7 +27,7 @@ const Root = () => {
       {isAuthenticated ? (
         <Link
           to={{
-            pathname: `/profile`,
+            pathname: `/dashboard`,
           }}
           id="homeButton"
         >
@@ -42,3 +42,5 @@ const Root = () => {
 };
 
 export default Root;
+
+/* Root is essentially the home page for this app */

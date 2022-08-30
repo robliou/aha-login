@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Root from "./components/Root";
 import ChangeName from "./components/ChangeName";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import Profile from "./components/Profile";
+import Dashboard from "./components/Dashboard";
 import UsersOneDay from "./components/UsersOneDay";
 import ChangePassword from "./components/ChangePassword";
 
@@ -21,11 +21,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Root />} />
         <Route path="/changename" element={<ChangeName />} />
-        <Route path="/home" element={<ProtectedRoute component={Profile} />} />
+        <Route
+          path="/home"
+          element={<ProtectedRoute component={Dashboard} />}
+        />
         <Route path="/changepassword/*" element={<ChangePassword />} />
         <Route
-          path="/profile/"
-          element={<ProtectedRoute component={Profile} />}
+          path="/dashboard/"
+          element={<ProtectedRoute component={Dashboard} />}
         />
         <Route path="/usersOneDay/" element={<UsersOneDay />} />
       </Routes>

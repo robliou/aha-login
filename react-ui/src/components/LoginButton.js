@@ -7,3 +7,5 @@ const LoginButton = () => {
 };
 
 export default LoginButton;
+
+/* Login button component */

@@ -50,21 +50,11 @@
 
   }
   
-p{
-    font-family: 'Source Sans Pro','Work Sans', sans-serif;
-}
-
-
-  img{
-    filter: saturate(120%);
-    border-radius: var(--border-radius-inner);
-
+  p{
+      font-family: 'Source Sans Pro','Work Sans', sans-serif;
   }
-  
 
-  
 
-   
   
   button {
     font-family: 'Work Sans', sans-serif;

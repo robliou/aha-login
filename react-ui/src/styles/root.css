@@ -64,53 +64,16 @@
   }
 
   #h1prop{
-    background-image:url("../images/mauve.png");
+    background-image:url('../images/mauve.png');
     font-weight: bold;
 
 
   }
 
-  #h3{
-    grid-row-start: 3; 
-    grid-row-end: span 1;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    color: rgb(243, 133, 106);
-
-    
-  }
-
- 
-  .headline{
-    text-align: center;
-    display: inline block;
-    padding-right: 0%;
-
-  }
-
-
-   .button{
-    color: white;
-    background: -webkit-linear-gradient(left, #e5771b, #753d16);
-    background-size: 200% 200%;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    border-width: 1px;
-    padding: 13px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1.2em;
-}
-
-   
+  
 
   @media only screen and (max-width: 767px){
 
-      .DDRLogo{
-        display: inline block;
-        max-width: 90%;
-
-      }
 
       #banner{
         display: inline block;

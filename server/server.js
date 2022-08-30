@@ -19,7 +19,8 @@ const corsOptions = {
 };
 
 /*
- * Middleware that will validate the incoming access token.
+ * Middleware that will validate the incoming access token. 
+   Probably not required, but nice to include here as long as it functions correctly.
  */
 const jwtCheck = jwt({
   secret: getPublicKey("dev-7-8i89hb.us.auth0.com"),
@@ -55,15 +56,16 @@ app.use(function (err, req, res, next) {
   next(err, req, res);
 });
 
+/* this route is used by the frontend to make calls to the "/users" path via the backend (Node)*/
 app.get("/users", (req, res, next) => {
   console.log(res);
 });
 
-app.patch("*", (req, res, next) => {
+app.patch("/users", (req, res, next) => {
   console.log(res);
 });
 
-app.post("*", (req, res, next) => {
+app.post("/users", (req, res, next) => {
   console.log(res);
 });
 
@@ -71,6 +73,10 @@ app.post("*", (req, res, next) => {
 app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
 app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
+});
+
+app.patch("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
 });
 

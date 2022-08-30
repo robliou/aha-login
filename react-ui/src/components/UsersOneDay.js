@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-//This line was needed for my bootstrap stuff to work, for some strange reason
-//It also fixed my .css stuff in Chrome
+//This line was needed for bootstrap stuff to work
+//It also fixed a .css issue in Chrome
 
 const dayjs = require("dayjs");
+//dayjs is useful for useful for standardizing date/time data into a readable format
 
 require("dotenv").config();
 
 let ManagementClient = require("auth0").ManagementClient;
 
 const UsersOneDay = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   const [usersOneDay, setUsersOneDay] = useState(null);
   const [usersWeekAgo, setUsersWeekAgo] = useState(null);
 
@@ -139,7 +140,7 @@ const UsersOneDay = () => {
           <br></br>
           <Link
             to={{
-              pathname: `/profile`,
+              pathname: `/dashboard`,
             }}
             id="homeButton"
           >
@@ -155,3 +156,7 @@ const UsersOneDay = () => {
   );
 };
 export default UsersOneDay;
+
+/* -- Note that for free accounts, Auth0 sets a limit on the number of calls that can be made per minute.
+                   Hence, all 3 of the user stats information could not be retrieved at once, and moved
+                  the remaining two to this component*/

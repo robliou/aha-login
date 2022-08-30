@@ -17,3 +17,5 @@ const LogoutButton = () => {
 };
 
 export default LogoutButton;
+
+/* Logout button component */

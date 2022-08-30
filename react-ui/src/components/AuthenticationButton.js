@@ -10,3 +10,5 @@ const AuthenticationButton = () => {
 };
 
 export default AuthenticationButton;
+
+/* Authentication logic contained within Login/Logout button, as based on Auth0 suggestions*/

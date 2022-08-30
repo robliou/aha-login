@@ -12,8 +12,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 require("dotenv").config();
 
 var ManagementClient = require("auth0").ManagementClient;
+//ManagementClient utilizes the node-auth package to make calls to the Management API
 
-const Profile = () => {
+const Dashboard = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
 
@@ -30,6 +31,7 @@ const Profile = () => {
       );
     }
 
+    //Note that POST call below is used to retrieve the management API token
     var options = {
       method: "POST",
       url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
@@ -60,8 +62,6 @@ const Profile = () => {
       return;
     }
 
-    /*     console.log("Getting User Statistics");
-     */
     var management = new ManagementClient({
       token: accessToken,
 
@@ -74,6 +74,7 @@ const Profile = () => {
       page: 0,
     };
 
+    //management.getUsers is used to retrieve users data, using the Management API token obtained above
     management.getUsers(params, function (err, users) {
       if (err) {
         console.log(err);
@@ -108,7 +109,7 @@ const Profile = () => {
               <td>{user.name} </td>
               <td>{user.email} </td>
               <td>{user.sub} </td>
-              <td>{updatedNickname} </td>
+              <td>{user.nickname} </td>
             </tr>
           </tbody>
         </Table>
@@ -137,6 +138,9 @@ const Profile = () => {
               <tr>
                 <td>{usersObject.length} </td>
                 <td>
+                  {/* -- Note that for free accounts, Auth0 sets a limit on the number of calls that can be made per minute*/}
+                  {/* Hence, all 3 of the user stats information could not be retrieved at once, and moved
+                  the remaining two to the 'usersOneDay' component*/}
                   <Link
                     to={{
                       pathname: `/usersOneDay`,
@@ -211,4 +215,6 @@ const Profile = () => {
     ""
   );
 };
-export default Profile;
+export default Dashboard;
+
+/* User profile and Dashboard*/

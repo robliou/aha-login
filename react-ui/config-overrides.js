@@ -25,3 +25,9 @@ module.exports = function override(config, env) {
   ]);
   return config;
 };
+
+/*This file is necessary because I was getting an error allowing create-react-app to support .mjs files with webpack */
+/*A suggestion presented at this GitHub comment was to add react-app-rewired to my
+project and then use this config-overrides.js file to address the missing files:
+https://stackoverflow.com/questions/64002604/how-to-make-create-react-app-support-mjs-files-with-webpack
+The app runs OK with this solution.*/

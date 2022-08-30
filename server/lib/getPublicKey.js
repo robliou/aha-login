@@ -60,3 +60,6 @@ module.exports = function (domain) {
     return cb(null, jwksPublicKey);
   };
 };
+
+/* This file is required in order for the initial JWT inspection within server.js to work correctly. 
+JWT inspection isn't mandatory, but it's nice to include here.*/

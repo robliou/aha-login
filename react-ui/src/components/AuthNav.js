@@ -10,3 +10,5 @@ const AuthNav = () => (
 );
 
 export default AuthNav;
+
+/* Component which contains Login/Logout button, as based on Auth0 suggestions*/
