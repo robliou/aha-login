@@ -8,6 +8,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { gql, useMutation } from "@apollo/client";
 
+/*  The purpose of this component is to allow the user to change their nickname. 
+The nickname is created as a metadata variable in a PostGresQL database hosted on ElephantQL.
+We are using GraphQL via ApolloQL/ Hasura in order to access and update the database.
+Note that while Auth0 provides the possibility of storing metadata for its users, I encountered
+a CORS-related error that neither myself nor any of the Auth0 support team could solve.  
+ */
+
 const ChangeName = () => {
   const { user } = useAuth0();
 
@@ -15,6 +22,9 @@ const ChangeName = () => {
 
   const navigate = useNavigate();
 
+  /*   This is the GraphQL mutation. 
+Note that all queries/ mutations SHOULD be created from a GraphQL console.
+ */
   const UPDATE_NICKNAME = gql`
     mutation UpdateNickname($nickname: String = "", $userEmail: String = "") {
       update_names(
@@ -31,6 +41,8 @@ const ChangeName = () => {
 
   const userEmail = user.email;
 
+  /*   It is important to pay attention to the shape of the variable parameter in the UseMutation createHook.
+  If the shape does not match what is defined in the GraphQL mutation, you will receive an 'undefined' error. */
   const [insert_nickname, { data, loading, error }] = useMutation(
     UPDATE_NICKNAME,
     {
@@ -58,7 +70,7 @@ const ChangeName = () => {
       'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
     );
     setTimeout(function () {
-      navigate("/Dashboard"); //will redirect to your blog page (an ex: blog.html)
+      navigate("/Dashboard"); //will redirect to Dashboard; set a 1.5s timeout to allow variables to update
     }, 1500);
   };
 

@@ -8,8 +8,8 @@ import Button from "react-bootstrap/Button";
 import { gql, useQuery } from "@apollo/client";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-//This line was needed for my bootstrap stuff to work, for some strange reason
-//It also fixed my .css stuff in Chrome?!?!?!?
+/* This line was needed for my bootstrap stuff to work. 
+Adding it also fixed some .css issues in Chrome */
 
 require("dotenv").config();
 
@@ -19,6 +19,13 @@ var ManagementClient = require("auth0").ManagementClient;
 /* User profile and Dashboard
 Information obtained via calls to the Auth0 Management API via M2M token*/
 
+/*  The purpose of this Dashboard component is to provide the User's profile information
+as well as User Statistics. Note that for free accounts, Auth0 sets a limit on the number of calls 
+that can be made per minute. Hence, some of the User Statistics information was moved to the 'usersOneDay' component, 
+accessed through a Button click.The full requirements for this page are described here: 
+https://docs.google.com/document/d/15tA1qlVOg14cmpX0DbIPPnUQa9GYlSXcb9haRCojVEU/edit.
+ */
+
 const Dashboard = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
@@ -27,9 +34,12 @@ const Dashboard = () => {
 
   var request = require("request");
 
-  /*   let userEmail = JSON.stringify({ userEmail: user.email });
-   */
-
+  /* To access user metadata (i.e. nickname), I utilized a PostGresQL database hosted on ElephantQL.
+It is accessed using GraphQL via ApolloQL/Hasura, which is a more elegant and easy-to-use solution compared to standard SQL.
+Note that GraphQL is still based on the SQL database, and the data is hosted on an SQL database via ElephantSQL.
+Below is the GRAPHQL query to access user metadata. 
+Note that all queries/ mutations SHOULD be created from a GraphQL console.
+ */
   const GET_NICKNAME = gql`
     query GetNickname($userEmail: String!) {
       names(where: { email: { _eq: $userEmail } }) {
@@ -39,7 +49,11 @@ const Dashboard = () => {
     }
   `;
 
+  //The user's email address is accessed via the user object obtained from Auth0.
   const userEmail = user.email;
+
+  /*   It is important to pay attention to the shape of the variable parameter in the UseMutation createHook.
+  If the shape does not match what is defined in the GraphQL query, you will receive an 'undefined' error. */
 
   const { loading, error, data } = useQuery(GET_NICKNAME, {
     fetchPolicy: "cache-and-network",
@@ -65,7 +79,7 @@ const Dashboard = () => {
       );
     }
 
-    //Note that POST call below is used to retrieve the Auth0 management API token
+    //Note that the POST call below is used to retrieve the Auth0 management API token
     var options = {
       method: "POST",
       url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
@@ -108,7 +122,7 @@ const Dashboard = () => {
       page: 0,
     };
 
-    //management.getUsers is used to retrieve users data, using the Management API token obtained above
+    //management.getUsers is used to retrieve users' data, using the Management API token obtained above
     management.getUsers(params, function (err, users) {
       if (err) {
         console.log(err);
@@ -117,7 +131,7 @@ const Dashboard = () => {
     });
   });
 
-  return isAuthenticated && data && userEmail && data.names[0].nickname ? (
+  return isAuthenticated && data && userEmail ? (
     <div id="profileContainer">
       <div class="userInfo">
         <br></br>
