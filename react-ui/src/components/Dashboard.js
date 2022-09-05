@@ -65,7 +65,7 @@ const Dashboard = () => {
       );
     }
 
-    //Note that POST call below is used to retrieve the management API token
+    //Note that POST call below is used to retrieve the Auth0 management API token
     var options = {
       method: "POST",
       url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
