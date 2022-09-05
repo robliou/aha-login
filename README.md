@@ -19,6 +19,6 @@ To run this file locally:
 1) Clone this app
 2) Setup an M2M app account with Auth0
 3) Set up an .env file in both the /react-ui and /server folders.
-3a) Add your environment variables as obtained from your M2M app into www.Auth0.com.
-4) Change the redirect URL in /react-ui/src/index.js to "http://localhost:3000"
-5) Use npm run in both the /react-ui and /server folders
+4) Add your environment variables as obtained from your M2M app into https://www.auth0.com.
+5) Change the redirect URL in /react-ui/src/index.js to "http://localhost:3000"
+6) Use npm run in both the /react-ui and /server folders
