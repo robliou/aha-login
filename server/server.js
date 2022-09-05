@@ -3,6 +3,8 @@ const http = require("http");
 const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
 const getPublicKey = require("./lib/getPublicKey");
+const db = require("./names");
+
 require("dotenv").config();
 /*
  * Initialize express.
@@ -18,6 +20,8 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 /*
  * Middleware that will validate the incoming access token. 
    Probably not required, but nice to include here as long as it functions correctly.
@@ -29,7 +33,9 @@ const jwtCheck = jwt({
   issuer: `https://dev-7-8i89hb.us.auth0.com/`,
 });
 
-app.use(cors(corsOptions));
+app.use(cors());
+
+app.options("/*", cors(corsOptions));
 
 app.use("/api", jwtCheck, function (req, res, next) {
   if (req.user) {
@@ -72,20 +78,25 @@ app.post("/users", (req, res, next) => {
 /* prod */
 app.use(express.static(path.join(__dirname, "../react-ui/build")));
 
-app.get("*", (req, res) => {
+/* app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
 });
 
 app.patch("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
-});
+}); */
+
+/*
+Routes related to changeName
+*/
+app.get("/names", db.getUsers);
+app.get("/names/:email", db.getUserById);
+app.post("/names", db.createUser);
+app.put("/names/:email", db.updateUser);
 
 /*
  * Start server.
  */
 http.createServer(app).listen(env("PORT"), function () {
-  console.log(
-    "Worldmappers API (Resource Server) listening on: http://localhost:" +
-      env("PORT")
-  );
+  console.log("listening on: http://localhost:" + env("PORT"));
 });

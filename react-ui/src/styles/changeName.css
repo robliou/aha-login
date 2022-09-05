@@ -36,6 +36,11 @@
 
   }
 
+  #nickname{
+    border-color: black;
+    border: solid
+  }
+
   .pageContainer {
     display: grid;
     grid-row: 1 / span 1;

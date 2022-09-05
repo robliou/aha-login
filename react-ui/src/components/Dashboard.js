@@ -5,6 +5,8 @@ import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
+import { gql, useQuery } from "@apollo/client";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 //This line was needed for my bootstrap stuff to work, for some strange reason
 //It also fixed my .css stuff in Chrome?!?!?!?
@@ -21,9 +23,38 @@ const Dashboard = () => {
   const { user, isAuthenticated } = useAuth0();
   const [usersObject, setUsersObject] = useState();
 
+  const [setVisible] = useState("false");
+
   var request = require("request");
 
-  let updatedNickname = localStorage.getItem("newNickname");
+  /*   let userEmail = JSON.stringify({ userEmail: user.email });
+   */
+
+  const GET_NICKNAME = gql`
+    query GetNickname($userEmail: String!) {
+      names(where: { email: { _eq: $userEmail } }) {
+        nickname
+        email
+      }
+    }
+  `;
+
+  const userEmail = user.email;
+
+  const { loading, error, data } = useQuery(GET_NICKNAME, {
+    fetchPolicy: "cache-and-network",
+    variables: { userEmail },
+    onCompleted: () => {
+      setVisible("true");
+    },
+  });
+
+  if (loading) return "Submitting...";
+  if (error) {
+    alert("error");
+
+    return `Submission error! ${error.message}`;
+  }
 
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
@@ -86,7 +117,7 @@ const Dashboard = () => {
     });
   });
 
-  return isAuthenticated ? (
+  return isAuthenticated && data && userEmail && data.names[0].nickname ? (
     <div id="profileContainer">
       <div class="userInfo">
         <br></br>
@@ -112,7 +143,7 @@ const Dashboard = () => {
               <td>{user.name} </td>
               <td>{user.email} </td>
               <td>{user.sub} </td>
-              <td>{user.nickname} </td>
+              <td>{data.names[0].nickname}</td>
             </tr>
           </tbody>
         </Table>

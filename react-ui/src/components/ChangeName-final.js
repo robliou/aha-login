@@ -9,6 +9,8 @@ var request = require("request");
 var ManagementClient = require("auth0").ManagementClient;
 require("dotenv").config();
 
+/* Change nickname using Management API/ M2M token obtained from Auth0 */
+
 const ChangeName = () => {
   const { user } = useAuth0();
 
@@ -49,13 +51,17 @@ const ChangeName = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getAccessToken(function (err, accessToken) {
+    getAccessToken(async function (err, accessToken) {
       if (err) {
         console.log("Error getting a token:", err.message || err);
         return;
       }
 
-      console.log("Posting nickname");
+      localStorage.setItem("accessToken", accessToken);
+
+      localStorage.getItem("accessToken");
+
+      await console.log(accessToken);
 
       var management = new ManagementClient({
         token: accessToken,
@@ -63,33 +69,37 @@ const ChangeName = () => {
         domain: process.env.REACT_APP_DOMAIN,
       });
 
-      var params = { id: user.user_id };
+      var params = await { id: user.sub };
 
-      var data = { nickname: `'${newNickname}` };
+      var metadata = {
+        nickname: { newNickname },
+        address: "123th Node.js Street",
+      };
 
-      management.updateUser(params, data, function (err, user) {
+      setNickname(newNickname);
+
+      console.log(params);
+
+      management.updateUserMetadata(params, metadata, function (err, user) {
         if (err) {
           console.log(err);
         }
         // Updated user.
+        console.log("user name udpated", `${newNickname}`);
       });
 
-      localStorage.setItem("newNickname", newNickname);
-
-      setTimeout(function () {
+      /* setTimeout(function () {
         window.location.reload();
-      }, 3);
+      }, 10); */
     });
   };
-
-  let updatedNickname = localStorage.getItem("newNickname");
 
   return (
     <div class="container_Buy">
       <br></br>
       <h2 class="headline">Current nickname is:</h2>
       <div id="nickName">
-        <h2>{updatedNickname} </h2>
+        <h2>{user.sub} </h2>
       </div>
       <br></br>
       <form onSubmit={handleSubmit}>
