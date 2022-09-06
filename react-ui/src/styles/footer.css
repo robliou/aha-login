@@ -22,10 +22,14 @@ footer
 .aha-logo {
     height: 9rem;
     width: 10rem;
-    background-image:url('./../images/aha-logo-resized.png');
     size: 100%;
     background-repeat: no-repeat;
-   
+    background-image:url('../images/aha-logo-resized.png');
+
+  }
+
+  #image{
+
   }
 
   

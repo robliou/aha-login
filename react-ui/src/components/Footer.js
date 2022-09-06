@@ -7,7 +7,12 @@ const Footer = () => {
 
   return (
     <footer>
-      <img className="aha-logo" alt="aha-logo" onClick={() => navigate("/")} />
+      <object
+        className="aha-logo"
+        alt="aha-logo"
+        onClick={() => navigate("/")}
+        onerror="this.style.display='none'"
+      />
     </footer>
   );
 };
