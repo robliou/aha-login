@@ -3,7 +3,6 @@ const http = require("http");
 const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
 const getPublicKey = require("./lib/getPublicKey");
-const db = require("./names");
 
 require("dotenv").config();
 /*
