@@ -12,6 +12,11 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+/* For full documentation and testing of these routes below, please see: 
+   https://app.swaggerhub.com/apis/flashrob01/Aha-Login-API/1.0.0
+ */
+
+/*Relevant cors modules to deter cross-origin related errors*/
 const cors = require("cors");
 
 const corsOptions = {
@@ -20,20 +25,18 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
-/*
- * Middleware that will validate the incoming access token. 
-   Probably not required, but nice to include here as long as it functions correctly.
- */
+app.use(cors());
+
+app.options("/*", cors(corsOptions));
+
+/*  Middleware that will validate the incoming access token once it is received from Auth0. 
+Not mandatory, but nice to have */
 const jwtCheck = jwt({
   secret: getPublicKey("dev-7-8i89hb.us.auth0.com"),
   audience: "https://dev-7-8i89hb.us.auth0.com/api/v2/",
   algorithms: ["RS256"],
   issuer: `https://dev-7-8i89hb.us.auth0.com/`,
 });
-
-app.use(cors());
-
-app.options("/*", cors(corsOptions));
 
 app.use("/api", jwtCheck, function (req, res, next) {
   if (req.user) {
@@ -60,7 +63,7 @@ app.use(function (err, req, res, next) {
   next(err, req, res);
 });
 
-/* this route is used by the frontend to make calls to the "/users" path via the backend (Node)*/
+/* these routes related to "/users" are used by the frontend to make calls to the "/users" path via the backend (Node)*/
 app.get("/users", (req, res, next) => {
   console.log(res);
 });
@@ -76,14 +79,7 @@ app.post("/users", (req, res, next) => {
 /* prod */
 app.use(express.static(path.join(__dirname, "../react-ui/build")));
 /*
-Routes related to changeName
-*/
-/* app.get("/names", db.getUsers);
-app.get("/names/:email", db.getUserById);
-app.post("/names", db.createUser);
-app.put("/names/:email", db.updateUser); */
 
-/*
  * Start server.
  */
 http.createServer(app).listen(env("PORT"), function () {

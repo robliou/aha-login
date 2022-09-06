@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -39,9 +38,9 @@ root.render(
     domain="dev-7-8i89hb.us.auth0.com"
     clientId="yABzJ5U03ynSjSijYOEWkwymAt84CFDS"
     redirectUri="https://aha-login.herokuapp.com"
-    //Note- unfreeze above and freeze below when going from production to local testing
-    /*     redirectUri="http://localhost:3000/home"
-     */ audience="https://dev-7-8i89hb.us.auth0.com/api/v2/"
+    //Note- freeze above and unfreeze below when going from production to local testing
+    /*     redirectUri="http://localhost:3000/home"*/
+    audience="https://dev-7-8i89hb.us.auth0.com/api/v2/"
     cacheLocation={"localstorage"}
     /*setting cacheLocation to {"localstorage"} allows authorized user information to be saved in the browser via a cookie */
   >
@@ -49,12 +48,10 @@ root.render(
       <App />
     </ApolloProvider>
   </Auth0Provider>,
-  /* Allows access to GraphQL*/
+  /* ApolloProvider allows access to GraphQL*/
+  /*Auth0Provider allows access to Auth0-related modules and functionality*/
 
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
