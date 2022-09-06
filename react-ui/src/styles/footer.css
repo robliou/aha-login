@@ -1,36 +1,29 @@
-
-
-footer      
-
-{
-            padding-top: 2em;
-            padding-bottom: 2em;
-            width: 100%;
-            height: auto;
+footer {
+     padding-top: 2em;
+     padding-bottom: 2em;
+     width: 100%;
+     height: auto;
             
-            display: grid;
-            grid-template-columns: 1 fr;
-            grid-template-rows: 1 fr;
+     display: grid;
+     grid-template-columns: 1 fr;
+     grid-template-rows: 1 fr;
          
-            background-color: #b4b5a3;
+     background-color: #b4b5a3;
             
-            font-size: 100%;
-            justify-content: center;
-            align-items: center;
-}
+     justify-content: center;
+  }
 
 .aha-logo {
-    height: 9rem;
-    width: 10rem;
-    size: 100%;
-    background-repeat: no-repeat;
-    background-image:url('../images/aha-logo-resized.png');
+     height: 7.5rem;
+     width: 7.5rem;
+     size: 100%;
+     background-repeat: no-repeat;
+     background-image:url('../images/aha-logo-resized.png');
+     border-color: rgb(47, 46, 46);
 
   }
 
-  #image{
 
-  }
 
   
 

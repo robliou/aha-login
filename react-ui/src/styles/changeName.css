@@ -1,16 +1,16 @@
-.container_ChangeName {
+  .container_ChangeName {
   display: flex;
   flex-direction: column;
   width: 100%;
-/*   max-width: 1000px;
- */  margin: 0 auto;
+  margin: 0 auto;
   background-color: #eeefdf;
   align-items: center;
+
   }
 
   .form-group{
    max-width: 1000px;
-  
+   
   }
 
   .btn btn-primary{
@@ -20,12 +20,11 @@
 
   }
 
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 750px){
       
   }
-
   
 
-  @media only screen and (min-width: 769px) and (max-width:1024px) {
+  @media only screen and (min-width: 750px) and (max-width:1024px) {
 
-}
+  }

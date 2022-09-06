@@ -78,10 +78,10 @@ app.use(express.static(path.join(__dirname, "../react-ui/build")));
 /*
 Routes related to changeName
 */
-app.get("/names", db.getUsers);
+/* app.get("/names", db.getUsers);
 app.get("/names/:email", db.getUserById);
 app.post("/names", db.createUser);
-app.put("/names/:email", db.updateUser);
+app.put("/names/:email", db.updateUser); */
 
 /*
  * Start server.

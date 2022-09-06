@@ -3,7 +3,6 @@
     flex-wrap: wrap;
     justify-content: center;
     background-color: #eeefdf;
-
 }
 
 .userInfo{
@@ -22,10 +21,9 @@
     font-size: large;
 }
 
-.headline {
-    
+.headline{
     text-align: center;  
-  }
+}
 
 #homeButton{
     display: flex;
@@ -38,12 +36,7 @@
     text-align: center;
     display: flex;
     justify-content: space-evenly;
-
 }
-
-
-
-
 
 @media only screen and (max-width: 700px){
    

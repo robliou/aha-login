@@ -1,5 +1,3 @@
-
-
 #wrapper{
   display: grid;
   grid-template-columns: 1 fr;
@@ -8,9 +6,7 @@
   justify-items: start;
   justify-content: center;
   background-color: #eeefdf;
-
 }
-
 
 .authNav{
   grid-template-columns: 2 span 1;
@@ -19,20 +15,6 @@
   padding-bottom: 1em;
 
 }
-
-
-
-@media (max-width: 750px) {
-  
-  h1 {
-    font-size: 220%;
-  }
-  h2 {
-      font-size: 115%;
-    } 
-
-}
-
 
 @media (max-width: 600px) {
 
@@ -45,13 +27,7 @@
     background-color: var(--lightBackground)
   }
 
-  h1 {
-    font-size: 150%;
-  }
-  
-  h2 {
-      font-size: 105%;
-    } 
+
 
   .authNav{
  
@@ -79,10 +55,8 @@
   
   }
 
-
-    .authNav{
- 
-      padding-bottom: 2em;
+  .authNav{
+     padding-bottom: 2em;
     }
 
 }

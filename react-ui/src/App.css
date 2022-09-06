@@ -1,21 +1,21 @@
-.App {
-  text-align: center;
+
+
+button {
+  font-family: 'Work Sans', sans-serif;
+  padding: var(--small-padding);
+  border: 0.5vw solid white;
+  border-radius: var(--border-radius-inner);
+  margin: var(--margin);
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  background-color: var(--font-color);
+
+
 }
 
-body {
-  margin: 0;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
-  text-align: var(--bs-body-text-align);
-  background-color: #ece8cb;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+button:hover {
+  box-shadow: 0 0 20px 0 whitesmoke inset, 0 0 0px 4px white;
+  color: darkslateblue;
+  background-color: var(--insideBackground);
+  font-weight: 700;
 }
-
-.App-link {
-  color: #61dafb;
-}
-

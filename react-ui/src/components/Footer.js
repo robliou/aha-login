@@ -7,12 +7,9 @@ const Footer = () => {
 
   return (
     <footer>
-      <object
-        className="aha-logo"
-        alt="aha-logo"
-        onClick={() => navigate("/")}
-        onerror="this.style.display='none'"
-      />
+      <div id="onClickProp" onClick={() => navigate("/")}>
+        <button className="aha-logo" alt="aha-logo" aria-label=" " />
+      </div>
     </footer>
   );
 };
