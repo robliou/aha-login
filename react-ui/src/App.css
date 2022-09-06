@@ -1,4 +1,4 @@
-
+/* Note: This is the base .css for all global variables */
 
 button {
   font-family: 'Work Sans', sans-serif;
@@ -19,3 +19,4 @@ button:hover {
   background-color: var(--insideBackground);
   font-weight: 700;
 }
+
