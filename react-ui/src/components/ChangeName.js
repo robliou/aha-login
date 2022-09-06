@@ -8,6 +8,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import { gql, useMutation } from "@apollo/client";
 
+import Form from "react-bootstrap/Form";
+
+import "bootstrap/dist/css/bootstrap.css";
+
 /*  The purpose of this component is to allow the user to change their nickname. 
 The nickname is created as a metadata variable in a PostGresQL database hosted on ElephantQL.
 We are using GraphQL via ApolloQL/ Hasura in order to access and update the database.
@@ -67,34 +71,45 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
     });
     console.log(data);
     alert(
-      'Thank you for submitting the form. You can always examine or edit it under the tab "My Profile"'
+      "Thank you for submitting the form. You can always edit your nickname under this tab."
     );
     setTimeout(function () {
       navigate("/Dashboard"); //will redirect to Dashboard; set a 1.5s timeout to allow variables to update
-    }, 1500);
+    }, 2000);
   };
 
   if (error) return `Error! ${error.message}`;
   else {
     return (
-      <div id="container_Buy">
-        <form onSubmit={handleSubmit}>
-          <ul class="flex-outer">
-            <li>
-              <label for="first-name">
-                What would you like to change your new nickname to?
-              </label>
+      <div class="container_ChangeName">
+        <br></br>
+
+        <Form onSubmit={handleSubmit}>
+          <div class="form-group">
+            <strong>
+              {" "}
+              What would you like to change your new nickname to? <br></br>
+            </strong>
+            <br></br>
+            <div class="col-sm-80">
               <input
+                class="form-control"
                 type="string"
                 id="nickname"
                 name="nickname"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
-                required
+                requiredid="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Insert or update nickname"
               />
-            </li>
-          </ul>
-        </form>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </Form>
+        <br></br>
       </div>
     );
   }

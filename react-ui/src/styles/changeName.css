@@ -1,205 +1,31 @@
-  .flex-container{
-    display: flex;
-    flex-direction: row;
-     min-width: 85%;
-    max-width: 85%; 
-    margin-left: 15px;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
-
-    border: 1px rgb(218, 213, 218) solid;
-
+.container_ChangeName {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+/*   max-width: 1000px;
+ */  margin: 0 auto;
+  background-color: #eeefdf;
+  align-items: center;
   }
 
-  .buttons{
+  .form-group{
+   max-width: 1000px;
+  
+  }
+
+  .btn btn-primary{
     text-align: center;
     display: flex;
     justify-content: space-evenly;
 
   }
 
-  #nickName{
-    text-align: center;
-  }
-
-  .homeButton{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: space-around;  }
-
-  .flex-outer{
-
-    list-style-type: none;
-  padding: 0;
-
-  }
-
-  #nickname{
-    border-color: black;
-    border: solid
-  }
-
-  .pageContainer {
-    display: grid;
-    grid-row: 1 / span 1;
-    grid-column: 1 /span 1;
-    justify-content: right;
-    margin: var(--margin);
-    padding: 3vw;
-    max-width: 76vw;
-    min-width: 76vw;
-    background-color: rgb(250, 250, 249);
-    border-radius: var(--border-radius-outer);
-    box-shadow: var(--box-shadow);
-    border: 1px rgb(223, 223, 106) solid;
-
-  }
-  
-
-  .headline {
-    
-    text-align: center;  
-  }
-
-  .result {
-    
-    text-align: right; 
-    color: 'black';
-  }
-
-  .container_Buy {
-    width: 80%;
-    max-width: 1000px;
-    margin: 0 auto;
-    
-    border: 1px rgb(223, 223, 106) solid;
-    background: #3AAFAB;
-   
-  }
-  
-  
-  .flex-outer {
-    max-width: 800px;
-    margin: 0 auto;
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .flex-outer li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  
-  
-  .flex-outer > li:not(:last-child) {
-    margin-bottom: 20px;
-  }
-  
-  .flex-outer li label,
-  .flex-outer li p {
-    padding: 8px;
-    font-weight: 300;
-    letter-spacing: .09em;
-    text-transform: uppercase;
-    text-align: center;
-  }
-  
-  .flex-outer > li > label,
-  .flex-outer li p {
-    flex: 1 0 120px;
-    max-width: 220px;
-  }
-  
-  .flex-outer > li > label + *{
-    flex: 1 0 220px;
-  }
-  
-  .flex-outer li p {
-    margin: 0;
-  }
-  
-  .flex-outer li input:not([type='checkbox']),
-  .flex-outer li textarea {
-    padding: 15px;
-    border: none;
-    margin-left: 15%;
-  }
-
-
-
-  
   @media only screen and (max-width: 768px){
-
-    .flex-outer li input:not([type='checkbox']), .flex-outer li textarea{
-      width: 220px;
-      margin-left: 19%;
-    }
-
-    .container-Sell{
-      width:100%;
-    }
-
-    .flex-container{
-      max-width: 100%;
-      flex-wrap: wrap;
-      display: block;
-
-    }
-
-
-    .flex-outer,
-  .flex-inner {
-    padding: 15px;
-  }
-    
-
-    .pageContainer{
-      display: block;
-      max-width: 100%;
-
-    }
-
-    .flex-outer li,
-    .flex-inner {
-      display: inline;
-      
-    }
-
-    .flex-outer > li > label,
-    .flex-outer li p {
-      max-width: 768px;
-    }
-
-    
-  .flex-outer > li > label + *,
-  .flex-inner {
-    flex: 1 0 220px;
-  }
-
-
-  #container_Buy {
-    width: 90%;
-   
-  }
-
       
   }
 
   
 
   @media only screen and (min-width: 769px) and (max-width:1024px) {
-    .pageContainer {
-    
-      padding: 2vw 2vw 2vw 2vw;
-      width: 100%;
-      
-  }
 
-  #container_Buy {
-    width: 90%;
-   
-  }
 }

@@ -20,8 +20,6 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
 /*
  * Middleware that will validate the incoming access token. 
    Probably not required, but nice to include here as long as it functions correctly.
@@ -77,15 +75,6 @@ app.post("/users", (req, res, next) => {
 
 /* prod */
 app.use(express.static(path.join(__dirname, "../react-ui/build")));
-
-/* app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
-});
-
-app.patch("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../react-ui/build", "index.html"));
-}); */
-
 /*
 Routes related to changeName
 */

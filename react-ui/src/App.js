@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/index.css";
 
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 import Root from "./components/Root";
 import ChangeName from "./components/ChangeName";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -32,6 +34,7 @@ function App() {
         />
         <Route path="/usersOneDay/" element={<UsersOneDay />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
