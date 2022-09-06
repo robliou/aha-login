@@ -69,10 +69,7 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
     insert_nickname({
       nickname,
     });
-    console.log(data);
-    alert(
-      "Thank you for submitting the form. You can always edit your nickname under this tab."
-    );
+
     setTimeout(function () {
       navigate("/Dashboard"); //will redirect to Dashboard; set a 1.5s timeout to allow variables to update
     }, 2000);
