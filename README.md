@@ -2,7 +2,9 @@
 This is the README.md for aha-login, a full-stack app created by Robert Liou as part of the full-stack engineer examination as required by Aha. Requirements for the project are listed here: https://docs.google.com/document/d/15tA1qlVOg14cmpX0DbIPPnUQa9GYlSXcb9haRCojVEU/edit.
 Aha-login is currently deployed at: https://aha-login.herokuapp.com.
 
-It is composed of a ReactJS front-end and a Node.js backend. The authorization is handled primarily by Auth0.  Calls to Auth0 are made from the Node back-end and require the acquisition of a specially obtained M2M (Machine-to-Machine) token. In order to obtain user profile information and users statistics, a postgresQL database has been constructed to handle the information; it is hosted by Heroku. Therefore, both the front- and back-end must be deployed in order for this app to run correctly.  In addition, user metadata, specifically creation and updating of an editable nickname, is handled by a separate, specially-created ElephantSQL (PostgresQL) database, which is accessed via a GraphQL setup using ApolloQL and Hasura.
+It is composed of a ReactJS front-end and a Node.js backend. The authorization is handled primarily by the Auth0 integration, with primary user authentication information entered through the Auth0 Lock widget.  Calls to Auth0 are made from the Node back-end and require the acquisition of a specially obtained M2M (Machine-to-Machine) token. In order to obtain user profile information and users statistics, a postgresQL database has been constructed to handle the information; it is hosted by Heroku. Therefore, both the front- and back-end must be deployed in order for this app to run correctly.  In addition, user metadata, specifically creation and updating of an editable nickname, is handled by a separate, specially-created ElephantSQL (PostgresQL) database, which is accessed via a GraphQL setup using ApolloQL and Hasura.
+
+Due to the strongly-typed data requirements of both Auth0 and GraphQL, I did not see a need to use Typescript for this project as it would have been redundant.
 
 The parent(global) .css file is located at /aha-login/react-ui/src/App.css.
 
