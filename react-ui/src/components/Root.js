@@ -21,7 +21,7 @@ const Root = () => {
         <h1 id="h1prop">
           <strong>
             {" "}
-            Welcome to Rob's <br></br> Aha! Login Demo. :&#41; <br></br>Please
+            Welcome to Rob's <br></br> Aha! Login Demo :&#41; <br></br>Please
             Login or Sign-up. <br />{" "}
           </strong>
         </h1>
