@@ -22,7 +22,7 @@ const Root = () => {
           <strong>
             {" "}
             Welcome to Rob's <br></br> Aha! Login Demo. <br></br>Please Login or
-            Sign-up! <br />{" "}
+            Sign-up <br />{" "}
           </strong>
         </h1>
       </div>
