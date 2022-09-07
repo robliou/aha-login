@@ -14,8 +14,8 @@ SwaggerHub API documentation for Aha-Login (user profile and users stats)-
 https://app.swaggerhub.com/apis/flashrob01/Aha-Login-API/1.0.0
 
 GraphQL Explorer-
-https://cloud.hasura.io/project/2391abf8-87f2-46b7-bcd4-926f3853264f/console/api/api-explorer
-The link above contains the GraphQL endpoint which an unauthorized user can use to test and make calls to the GraphQL database.
+https://cloud.hasura.io/project/2391abf8-87f2-46b7-bcd4-926f3853264f/console/api/api-explorer.
+The link contains the GraphQL API endpoint which an unauthorized user can use to test and make calls to the GraphQL database.
 Note that user nicknames are stored in the 'Names' table.
 As SwaggerAPI currently does not support GraphQL, instructions for how to access and use a GraphQL database are at the below link:
 https://www.apollographql.com/docs/studio/explorer/explorer/
