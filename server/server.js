@@ -4,16 +4,15 @@ const { expressjwt: jwt } = require("express-jwt");
 const env = require("./lib/env");
 const getPublicKey = require("./lib/getPublicKey");
 
+/*All routes are listed here. For full documentation and testing of these routes below, please see: 
+   https://app.swaggerhub.com/apis/flashrob01/Aha-Login-API/1.0.0 /*
+
 require("dotenv").config();
 /*
  * Initialize express.
  */
 const express = require("express");
 const app = express();
-
-/* For full documentation and testing of these routes below, please see: 
-   https://app.swaggerhub.com/apis/flashrob01/Aha-Login-API/1.0.0
- */
 
 /*Relevant cors modules to deter cross-origin related errors*/
 const cors = require("cors");

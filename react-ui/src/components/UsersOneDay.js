@@ -15,10 +15,12 @@ const dayjs = require("dayjs");
 require("dotenv").config();
 
 /* -- Note that for free accounts, Auth0 sets a limit on the number of calls that can be made per minute.
-                   Hence, all 3 of the user stats information could not be retrieved and displayed at once.
-                   Moved the remaining two to a table hosted in this component*/
+Hence, all 3 pieces of the user stat information could not be retrieved and displayed at once.
+Moved the remaining two to a table hosted within this component*/
 
 let ManagementClient = require("auth0").ManagementClient;
+/*ManagementClient is an Auth0 method that allows us to access the Management API via M2M token. 
+Initialize it here.*/
 
 const UsersOneDay = () => {
   const { isAuthenticated } = useAuth0();
@@ -65,6 +67,10 @@ const UsersOneDay = () => {
       callback(null, body.access_token);
     });
   };
+
+  /*Here we call getAccessToken, which retrieves the M2M access token from Auth0. Immediately afterward, we also make 
+  a query to the Management API to get additional users statistics. See below link for the API we call:
+  https://auth0.com/docs/api/management/v2*/
 
   getAccessToken(function (err, accessToken) {
     if (err) {

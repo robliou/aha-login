@@ -1,6 +1,9 @@
 var ms = require("ms");
 var request = require("request");
 
+/* This file is required in order for the initial JWT inspection within server.js to work correctly. 
+JWT inspection isn't mandatory, but it's nice security bonus to add.*/
+
 function certToPEM(cert) {
   cert = cert.match(/.{1,64}/g).join("\n");
   cert = "-----BEGIN CERTIFICATE-----\n" + cert;
@@ -60,6 +63,3 @@ module.exports = function (domain) {
     return cb(null, jwksPublicKey);
   };
 };
-
-/* This file is required in order for the initial JWT inspection within server.js to work correctly. 
-JWT inspection isn't mandatory, but it's nice to include here.*/

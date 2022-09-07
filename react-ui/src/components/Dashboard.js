@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   var request = require("request");
 
-  /* To access user metadata (i.e. nickname), I utilized a PostGresQL database hosted on ElephantQL.
+  /* To access user metadata (i.e. nickname), I utilized a PostGresQL database hosted on ElephantQL, separate from Auth0.
 It is accessed using GraphQL via ApolloQL/Hasura, which is a more elegant and easy-to-use solution compared to standard SQL.
 Note that GraphQL is still based on the SQL database, and the data is hosted on an SQL database via ElephantSQL.
 Below is the GRAPHQL query to access user metadata. 
@@ -52,8 +52,10 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
   //The user's email address is accessed via the user object obtained from Auth0.
   const userEmail = user.email;
 
-  /*   It is important to pay attention to the shape of the variable parameter in the UseMutation createHook.
-  If the shape does not match what is defined in the GraphQL query, you will receive an 'undefined' error. */
+  /*   When using GraphQL, tt is important to pay attention to the shape of the variable parameter 
+  in the UseMutation createHook. If the shape does not match what is defined in the GraphQL query, 
+  you will receive an 'undefined' error. Below we use the useQuery hook to call user data from our
+  Hasura/ApolloQL database. */
 
   const { loading, error, data } = useQuery(GET_NICKNAME, {
     fetchPolicy: "cache-and-network",
@@ -70,6 +72,9 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
     return `Submission error! ${error.message}`;
   }
 
+  /*Separate from GraphQL, we must define a call to retrieve the M2M access token from Auth0. 
+ Below is the POST call to retrieve the M2M access token.*/
+
   var getAccessToken = function (callback) {
     if (!"dev-7-8i89hb.us.auth0.com") {
       callback(
@@ -79,7 +84,6 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
       );
     }
 
-    //Note that the POST call below is used to retrieve the Auth0 management API token
     var options = {
       method: "POST",
       url: "https://dev-7-8i89hb.us.auth0.com/oauth/token",
@@ -104,6 +108,10 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
     });
   };
 
+  /*Here we call getAccessToken, which retrieves the M2M access token from Auth0. Immediately afterward, we also make 
+  a query to the Management API to get additional users statistics. See below link for more info on the API we call:
+  https://auth0.com/docs/api/management/v2*/
+
   getAccessToken(function (err, accessToken) {
     if (err) {
       console.log("Error getting a token:", err.message || err);
@@ -122,7 +130,7 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
       page: 0,
     };
 
-    //management.getUsers is used to retrieve users' data, using the Management API token obtained above
+    //management.getUsers is an Auth0 method used to retrieve users' data, using the Management API token obtained above
     management.getUsers(params, function (err, users) {
       if (err) {
         console.log(err);
@@ -187,8 +195,8 @@ Note that all queries/ mutations SHOULD be created from a GraphQL console.
                 <td>{usersObject.length} </td>
                 <td>
                   {/* -- Note that for free accounts, Auth0 sets a limit on the number of calls that can be made per minute*/}
-                  {/* Hence, all 3 of the user stats information could not be retrieved at once, and moved
-                  the remaining two to the 'usersOneDay' component*/}
+                  {/* Hence, all 3 of the user stat information could not be retrieved at once, and therefore I moved
+                  the remaining two pieces to the 'UsersOneDay.js' component*/}
                   <Link
                     to={{
                       pathname: `/usersOneDay`,
